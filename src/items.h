@@ -249,7 +249,7 @@ class ItemType
 		bool pickupable = false;
 		bool rotatable = false;
 		bool useable = false;
-		bool moveable = false;
+		bool moveable = true;
 		bool alwaysOnTop = false;
 		bool canReadText = false;
 		bool canWriteText = false;
@@ -260,6 +260,75 @@ class ItemType
 		bool lookThrough = false;
 		bool stopTime = false;
 		bool showCount = true;
+
+		//new
+
+		bool isCorpse = false;
+		bool isLightSource = false;
+		bool isDisguise = false;
+		bool canDestroy = false;
+
+		bool isLiquidSource = false;
+
+		bool changeUse = false;
+		uint16_t changeTarget = 0;
+
+		bool canDecay = false;
+
+
+		//food
+		bool isFood = false;
+		uint16_t nutrition = 0;
+
+		//
+		bool questChest = false;
+
+
+		//can be used in the future
+		bool unlay = false;
+
+		//together with hasHeight
+		uint16_t elevation = 0;
+
+
+		//those events are enabled to the item
+		bool movementEvent = false;
+		bool separationEvent = false;
+		bool collisionEvent = false;
+		bool useEvent = false;
+
+	
+
+		bool isSpecial = false;
+		uint16_t meaning = 0;
+
+		bool isWeapon = false;
+		//can be equiped
+		bool isEquipment = false;
+
+		bool isArmor = false;
+		bool isShield = false;
+		bool distUse = false;
+
+		bool ropeSpot = false;
+
+		bool hasInformation = false;
+		uint16_t informationType = 0;
+
+		bool isKeydoor = false;
+		uint16_t keydoorTarget = 0;
+
+		bool isQuestDoor = false;
+		uint16_t questdoorTarget = 0;
+
+		bool isNamedoor = false;
+		uint16_t namedoorTarget = 0;
+
+		bool isLevelDoor = false;
+		uint16_t leveldoorTarget = 0;
+
+		bool isWriteOnce = false;
+	
 };
 
 class Items

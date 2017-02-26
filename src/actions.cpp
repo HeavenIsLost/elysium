@@ -316,11 +316,12 @@ ReturnValue Actions::internalUseItem(Player* player, const Position& pos, uint8_
 		} else {
 			openContainer = container;
 		}
-
+		/*
 		uint32_t corpseOwner = container->getCorpseOwner();
 		if (corpseOwner != 0 && !player->canOpenCorpse(corpseOwner)) {
 			return RETURNVALUE_YOUARENOTTHEOWNER;
 		}
+		*/
 
 		//open/close container
 		int32_t oldContainerId = player->getContainerID(openContainer);
@@ -346,6 +347,11 @@ ReturnValue Actions::internalUseItem(Player* player, const Position& pos, uint8_
 		}
 
 		return RETURNVALUE_NOERROR;
+	} else if (it.changeUse) {
+		if (it.changeTarget != 0) {
+			g_game.transformItem(item, it.changeTarget);
+			return RETURNVALUE_NOERROR;
+		}
 	}
 
 	return RETURNVALUE_CANNOTUSETHISOBJECT;

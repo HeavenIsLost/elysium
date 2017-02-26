@@ -45,7 +45,7 @@ void Items::clear()
 bool Items::reload()
 {
 	clear();
-	loadFromOtb("data/items/items.otb");
+	//loadFromOtb("data/items/items.otb");
 
 	if (!loadFromXml()) {
 		return false;
@@ -295,9 +295,9 @@ FILELOADER_ERRORS Items::loadFromOtb(const std::string& file)
 bool Items::loadFromXml()
 {
 	pugi::xml_document doc;
-	pugi::xml_parse_result result = doc.load_file("data/items/items.xml");
+	pugi::xml_parse_result result = doc.load_file("data/items/objects.xml");
 	if (!result) {
-		printXMLError("Error - Items::loadFromXml", "data/items/items.xml", result);
+		printXMLError("Error - Items::loadFromXml", "data/items/objects.xml", result);
 		return false;
 	}
 
@@ -305,25 +305,6 @@ bool Items::loadFromXml()
 		pugi::xml_attribute idAttribute = itemNode.attribute("id");
 		if (idAttribute) {
 			parseItemNode(itemNode, pugi::cast<uint16_t>(idAttribute.value()));
-			continue;
-		}
-
-		pugi::xml_attribute fromIdAttribute = itemNode.attribute("fromid");
-		if (!fromIdAttribute) {
-			std::cout << "[Warning - Items::loadFromXml] No item id found" << std::endl;
-			continue;
-		}
-
-		pugi::xml_attribute toIdAttribute = itemNode.attribute("toid");
-		if (!toIdAttribute) {
-			std::cout << "[Warning - Items::loadFromXml] fromid (" << fromIdAttribute.value() << ") without toid" << std::endl;
-			continue;
-		}
-
-		uint16_t id = pugi::cast<uint16_t>(fromIdAttribute.value());
-		uint16_t toId = pugi::cast<uint16_t>(toIdAttribute.value());
-		while (id <= toId) {
-			parseItemNode(itemNode, id++);
 		}
 	}
 	return true;
@@ -331,6 +312,9 @@ bool Items::loadFromXml()
 
 void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 {
+	uint16_t serverId = id;
+	uint16_t clientId = id;
+
 	if (id > 30000 && id < 30100) {
 		id -= 30000;
 
@@ -341,7 +325,18 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 		iType.id = id;
 	}
 
+	reverseItemMap.emplace(clientId, serverId);
+
+	// store the found item
+	if (serverId >= items.size()) {
+		items.resize(serverId + 1);
+	}
+
 	ItemType& it = getItemType(id);
+
+	it.id = id;
+	it.clientId = clientId;
+
 	if (it.id == 0) {
 		return;
 	}
@@ -372,7 +367,249 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 		}
 
 		std::string tmpStrValue = asLowerCaseString(keyAttribute.as_string());
-		if (tmpStrValue == "type") {
+
+		//flags to signal a item is something
+		if (tmpStrValue == "flag") {
+			std::string flagName = asLowerCaseString(valueAttribute.as_string());
+
+			if (flagName == "bank") {
+				it.group = itemgroup_t::ITEM_GROUP_GROUND;
+			} else if (flagName == "container") {
+				it.type = ITEM_TYPE_CONTAINER;
+				it.group = itemgroup_t::ITEM_GROUP_CONTAINER;
+			} else if (flagName == "liquidcontainer") {
+				it.group = itemgroup_t::ITEM_GROUP_FLUID;
+			} else if (flagName == "liquidpool") {
+				it.group = itemgroup_t::ITEM_GROUP_SPLASH;
+			} else if (flagName == "clip") {
+				it.alwaysOnTopOrder = 1;
+				it.alwaysOnTop = true;
+			} else if (flagName == "bottom") {
+				it.alwaysOnTopOrder = 2;
+				it.alwaysOnTop = true;
+			} else if (flagName == "top") {
+				it.alwaysOnTopOrder = 3;
+				it.alwaysOnTop = true;
+			} else if (flagName == "avoid") {
+				it.blockPathFind = true;
+			} else if (flagName == "unpass") {
+				it.blockSolid = true;
+			} else if (flagName == "unmove") {
+				it.moveable = false;
+			} else if (flagName == "unthrow") {
+				it.blockProjectile = true;
+			} else if (flagName == "take") {
+				it.pickupable = true;
+			} else if (flagName == "cumulative") {
+				it.stackable = true;
+			} else if (flagName == "text") {
+				it.canReadText = true;
+			} else if (flagName == "write") {
+				it.canWriteText = it.canReadText = true;
+			} else if (flagName == "corpse") {
+				it.isCorpse = true;
+			}
+			else if (flagName == "height") {
+				it.hasHeight = true;
+			}
+			else if (flagName == "rotate") {
+				it.rotatable = true;
+			}
+			else if (flagName == "unlay") {
+				it.unlay = true;
+			}
+			else if (flagName == "light") {
+				it.isLightSource = true;
+			}
+			else if (flagName == "disguise") {
+				it.isDisguise = true;
+			}
+			else if (flagName == "liquidsource") {
+				it.isLiquidSource = true;
+			}
+			else if (flagName == "changeuse") {
+				it.changeUse = true;
+			}
+			else if (flagName == "decay") {
+				it.canDecay = true;
+			}
+			else if (flagName == "hang") {
+				it.isHangable = true;
+			}
+			else if (flagName == "food") {
+				it.isFood = true;
+			}
+			else if (flagName == "chest") {
+				it.questChest = true;
+			}
+			else if (flagName == "destroy") {
+				it.canDestroy = true;
+			}
+			else if (flagName == "movementevent") {
+				it.movementEvent = true;
+			}
+			else if (flagName == "collisionevent") {
+				it.collisionEvent = true;
+			}
+			else if (flagName == "separationevent") {
+				it.separationEvent = true;
+			}
+			else if (flagName == "useevent") {
+				it.useEvent = true;
+			}
+			else if (flagName == "multiuse") {
+				it.useable = true;
+			}
+			else if (flagName == "rune") {
+				it.type = ITEM_TYPE_RUNE;
+			}
+			else if (flagName == "special") {
+				it.isSpecial = true;
+			}
+			else if (flagName == "equipment") {
+				it.isEquipment = true;
+			}
+			else if (flagName == "weapon") {
+				it.isWeapon = true;
+			}
+			else if (flagName == "armor") {
+				it.isArmor = true;
+			}
+			else if (flagName == "magicfield") {
+				it.type = ITEM_TYPE_MAGICFIELD;
+			}
+			else if (flagName == "shield") {
+				it.isShield = true;
+			}
+			else if (flagName == "distuse") {
+				it.distUse = true;
+			}
+			else if (flagName == "hooksouth") {
+				it.isVertical = true;
+			}
+			else if (flagName == "hookeast") {
+				it.isHorizontal = true;
+			}
+			else if (flagName == "forceuse") {
+				it.forceUse = true;
+			}
+			else if (flagName == "ropespot") {
+				it.ropeSpot = true;
+			}
+			else if (flagName == "bed") {
+				it.type = ITEM_TYPE_BED;
+			}
+			else if (flagName == "information") {
+				it.hasInformation = true;
+			}
+			else if (flagName == "keydoor") {
+				it.isKeydoor = true;
+			}
+			else if (flagName == "questdoor") {
+				it.isQuestDoor = true;
+			}
+			else if (flagName == "namedoor") {
+				it.isNamedoor = true;
+			}
+			else if (flagName == "writeonce") {
+				it.isWriteOnce = true;
+			}
+			else if (flagName == "leveldoor") {
+				it.isLevelDoor = true;
+			}
+			else if (flagName == "key") {
+				it.type = ITEM_TYPE_KEY;
+			}
+			else if (flagName == "") {
+			}
+			else if (flagName == "") {
+			}
+			else if (flagName == "") {
+			}
+			else if (flagName == "") {
+			}
+			else if (flagName == "") {
+			}
+			else if (flagName == "") {
+			}
+			else if (flagName == "") {
+			}
+			else if (flagName == "") {
+			}
+			else if (flagName == "") {
+			}
+			else if (flagName == "") {
+			}
+			else if (flagName == "") {
+			}
+			else if (flagName == "") {
+			} 
+			else if (flagName == "") {
+
+			} else {
+				std::cout << "[Warning - Items::parseItemNode] Unknown flag: " << valueAttribute.as_string() << std::endl;
+			}
+
+		//new properties
+		} else if (tmpStrValue == "disguisetarget") {
+			it.clientId = pugi::cast<uint16_t>(valueAttribute.value());
+		} else if (tmpStrValue == "waypoints") {
+			it.speed = pugi::cast<uint16_t>(valueAttribute.value());
+		}
+		else if (tmpStrValue == "elevation") {
+			it.elevation = pugi::cast<uint16_t>(valueAttribute.value());
+		}
+		else if (tmpStrValue == "brightness") {
+			it.lightLevel = pugi::cast<uint8_t>(valueAttribute.value());
+		}
+		else if (tmpStrValue == "lightcolor") {
+			it.lightColor = pugi::cast<uint8_t>(valueAttribute.value());
+		}
+		else if (tmpStrValue == "changetarget") {
+			it.changeTarget = pugi::cast<uint16_t>(valueAttribute.value());
+		}
+		else if (tmpStrValue == "nutrition") {
+			it.nutrition = pugi::cast<uint16_t>(valueAttribute.value());
+		}
+		else if (tmpStrValue == "meaning") {
+			it.meaning = pugi::cast<uint16_t>(valueAttribute.value());
+
+		}
+		//todo
+		else if (tmpStrValue == "corpsecreaturetype") {
+			//Player or Monster
+		}
+		//todo
+		else if (tmpStrValue == "avoiddamagetypes") {
+			it.blockPathFind = true;
+
+			//it can be fire, poison or energy
+			//more like to tell the a start path find system which type of field is this
+			tmpStrValue = asLowerCaseString(valueAttribute.as_string());
+		}
+		//todo
+		//no clue why its used in text items
+		else if (tmpStrValue == "fontsize") {
+		}
+		else if (tmpStrValue == "informationtype") {
+			it.informationType = pugi::cast<uint16_t>(valueAttribute.value());
+			//2 = clock
+			//3 = ceremonial mask, no clue yet
+			//4 = spellbook
+		}
+		else if (tmpStrValue == "keydoortarget") {
+			it.keydoorTarget = pugi::cast<uint16_t>(valueAttribute.value());
+		}
+		else if (tmpStrValue == "questdoortarget") {
+			it.questdoorTarget = pugi::cast<uint16_t>(valueAttribute.value());
+		}
+		else if (tmpStrValue == "namedoortarget") {
+			it.namedoorTarget = pugi::cast<uint16_t>(valueAttribute.value());
+		}
+		else if (tmpStrValue == "leveldoortarget") {
+			it.leveldoorTarget = pugi::cast<uint16_t>(valueAttribute.value());
+		//old properties
+		} else if (tmpStrValue == "type") {
 			tmpStrValue = asLowerCaseString(valueAttribute.as_string());
 			if (tmpStrValue == "key") {
 				it.type = ITEM_TYPE_KEY;
@@ -506,7 +743,7 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 		} else if (tmpStrValue == "writeable") {
 			it.canWriteText = valueAttribute.as_bool();
 			it.canReadText = it.canWriteText;
-		} else if (tmpStrValue == "maxtextlen") {
+		} else if (tmpStrValue == "maxtextlen" || tmpStrValue == "maxlength") {
 			it.maxTextLen = pugi::cast<uint16_t>(valueAttribute.value());
 		} else if (tmpStrValue == "writeonceitemid") {
 			it.writeOnceItemId = pugi::cast<uint16_t>(valueAttribute.value());
@@ -876,6 +1113,17 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 	//check bed items
 	if ((it.transformToFree != 0 || it.transformToOnUse[PLAYERSEX_FEMALE] != 0 || it.transformToOnUse[PLAYERSEX_MALE] != 0) && it.type != ITEM_TYPE_BED) {
 		std::cout << "[Warning - Items::parseItemNode] Item " << it.id << " is not set as a bed-type" << std::endl;
+	}
+
+	//hack, 7.7 objects.srv lack the corpseType property
+	if (it.isCorpse) {
+		if (it.fluidSource == FLUID_BLOOD) {
+			it.corpseType = RACE_BLOOD;
+		} else if (it.fluidSource == FLUID_SLIME) {
+			it.corpseType = RACE_VENOM;
+		} else {
+			it.corpseType = RACE_UNDEAD;
+		}
 	}
 }
 

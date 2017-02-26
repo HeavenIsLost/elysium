@@ -79,10 +79,6 @@ void ProtocolLogin::getCharacterList(const std::string& accountName, const std::
 		output->addString(ss.str());
 	}
 
-	//Add session key
-	output->addByte(0x28);
-	output->addString(accountName + "\n" + password + "\n" + token + "\n" + std::to_string(ticks));
-
 	//Add char list
 	output->addByte(0x64);
 
@@ -102,13 +98,10 @@ void ProtocolLogin::getCharacterList(const std::string& accountName, const std::
 	}
 
 	//Add premium days
-	output->addByte(0);
 	if (g_config.getBoolean(ConfigManager::FREE_PREMIUM)) {
-		output->addByte(1);
-		output->add<uint32_t>(0);
+		output->add<uint16_t>(0xFFFF);    //client displays free premium
 	} else {
-		output->addByte(0);
-		output->add<uint32_t>(time(nullptr) + (account.premiumDays * 86400));
+		output->add<uint16_t>(account.premiumDays);
 	}
 
 	send(output);
@@ -205,13 +198,16 @@ void ProtocolLogin::onRecvFirstMessage(NetworkMessage& msg)
 	}
 
 	// read authenticator token and stay logged in flag from last 128 bytes
+	/*
 	msg.skipBytes((msg.getLength() - 128) - msg.getBufferPosition());
 	if (!Protocol::RSA_decrypt(msg)) {
 		disconnectClient("Invalid authentification token.", version);
 		return;
 	}
-
 	std::string authToken = msg.getString();
+	*/
+	
+	std::string authToken = "";
 
 	auto thisPtr = std::static_pointer_cast<ProtocolLogin>(shared_from_this());
 	g_dispatcher.addTask(createTask(std::bind(&ProtocolLogin::getCharacterList, thisPtr, accountName, password, authToken, version)));

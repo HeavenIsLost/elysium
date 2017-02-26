@@ -245,7 +245,7 @@ void ProtocolGame::onRecvFirstMessage(NetworkMessage& msg)
 	OperatingSystem_t operatingSystem = static_cast<OperatingSystem_t>(msg.get<uint16_t>());
 	version = msg.get<uint16_t>();
 
-	msg.skipBytes(7); // U32 client version, U8 client type, U16 dat revision
+	msg.skipBytes(5); // U32 clientVersion, U8 clientType
 
 	if (!Protocol::RSA_decrypt(msg)) {
 		disconnect();
@@ -270,25 +270,10 @@ void ProtocolGame::onRecvFirstMessage(NetworkMessage& msg)
 
 	msg.skipBytes(1); // gamemaster flag
 
-	std::string sessionKey = msg.getString();
 
-	auto sessionArgs = explodeString(sessionKey, "\n", 4);
-	if (sessionArgs.size() != 4) {
-		disconnect();
-		return;
-	}
-
-	std::string& accountName = sessionArgs[0];
-	std::string& password = sessionArgs[1];
-	std::string& token = sessionArgs[2];
-	uint32_t tokenTime = strtoul(sessionArgs[3].c_str(), NULL, 10);
-
-	if (accountName.empty()) {
-		disconnectClient("You must enter your account name.");
-		return;
-	}
-
+	std::string accountName = msg.getString();
 	std::string characterName = msg.getString();
+	std::string password = msg.getString();
 
 	uint32_t timeStamp = msg.get<uint32_t>();
 	uint8_t randNumber = msg.getByte();
@@ -325,6 +310,9 @@ void ProtocolGame::onRecvFirstMessage(NetworkMessage& msg)
 		disconnectClient(ss.str());
 		return;
 	}
+
+	std::string token = "";
+	uint32_t tokenTime = 0;
 
 	uint32_t accountId = IOLoginData::gameworldAuthentication(accountName, password, characterName, token, tokenTime);
 	if (accountId == 0) {
@@ -1279,18 +1267,10 @@ void ProtocolGame::sendBasicData()
 {
 	NetworkMessage msg;
 	msg.addByte(0x9F);
-	if (player->isPremium()) {
-		msg.addByte(1);
-		msg.add<uint32_t>(time(nullptr) + (player->premiumDays * 86400));
-	} else {
-		msg.addByte(0);
-		msg.add<uint32_t>(0);
-	}
+	msg.addByte(player->isPremium() ? 0x01 : 0x00);
+	msg.add<uint32_t>(std::numeric_limits<uint32_t>::max());
 	msg.addByte(player->getVocation()->getClientId());
-	msg.add<uint16_t>(0xFF); // number of known spells
-	for (uint8_t spellId = 0x00; spellId < 0xFF; spellId++) {
-		msg.addByte(spellId);
-	}
+	msg.add<uint16_t>(0x00);
 	writeToOutputBuffer(msg);
 }
 
@@ -2386,12 +2366,6 @@ void ProtocolGame::sendAddCreature(const Creature* creature, const Position& pos
 		msg.addByte(0x00);
 	}
 
-	msg.addByte(0x00); // can change pvp framing option
-	msg.addByte(0x00); // expert mode button enabled
-
-	msg.add<uint16_t>(0x00); // URL (string) to ingame store images
-	msg.add<uint16_t>(25); // premium coin package size
-
 	writeToOutputBuffer(msg);
 
 	sendPendingStateEntered();
@@ -2401,7 +2375,7 @@ void ProtocolGame::sendAddCreature(const Creature* creature, const Position& pos
 	if (isLogin) {
 		sendMagicEffect(pos, CONST_ME_TELEPORT);
 	}
-
+	
 	sendInventoryItem(CONST_SLOT_HEAD, player->getInventoryItem(CONST_SLOT_HEAD));
 	sendInventoryItem(CONST_SLOT_NECKLACE, player->getInventoryItem(CONST_SLOT_NECKLACE));
 	sendInventoryItem(CONST_SLOT_BACKPACK, player->getInventoryItem(CONST_SLOT_BACKPACK));
@@ -2415,7 +2389,7 @@ void ProtocolGame::sendAddCreature(const Creature* creature, const Position& pos
 
 	sendStats();
 	sendSkills();
-
+	
 	//gameworld light-settings
 	LightInfo lightInfo;
 	g_game.getWorldLightInfo(lightInfo);
@@ -2838,12 +2812,6 @@ void ProtocolGame::AddPlayerStats(NetworkMessage& msg)
 	msg.add<uint16_t>(player->getLevel());
 	msg.addByte(player->getLevelPercent());
 
-	msg.add<uint16_t>(100); // base xp gain rate
-	msg.add<uint16_t>(0); // xp voucher
-	msg.add<uint16_t>(0); // low level bonus
-	msg.add<uint16_t>(0); // xp boost
-	msg.add<uint16_t>(100); // stamina multiplier (100 = x1.0)
-
 	msg.add<uint16_t>(std::min<int32_t>(player->getMana(), std::numeric_limits<uint16_t>::max()));
 	msg.add<uint16_t>(std::min<int32_t>(player->getMaxMana(), std::numeric_limits<uint16_t>::max()));
 
@@ -2861,9 +2829,6 @@ void ProtocolGame::AddPlayerStats(NetworkMessage& msg)
 	msg.add<uint16_t>(condition ? condition->getTicks() / 1000 : 0x00);
 
 	msg.add<uint16_t>(player->getOfflineTrainingTime() / 60 / 1000);
-
-	msg.add<uint16_t>(0); // xp boost time (seconds)
-	msg.addByte(0); // enables exp boost in the store
 }
 
 void ProtocolGame::AddPlayerSkills(NetworkMessage& msg)
@@ -2875,30 +2840,6 @@ void ProtocolGame::AddPlayerSkills(NetworkMessage& msg)
 		msg.add<uint16_t>(player->getBaseSkill(i));
 		msg.addByte(player->getSkillPercent(i));
 	}
-
-	// critical chance
-	msg.add<uint16_t>(0);
-	msg.add<uint16_t>(0);
-
-	// critical damage
-	msg.add<uint16_t>(0);
-	msg.add<uint16_t>(0);
-
-	// life leech chance
-	msg.add<uint16_t>(0);
-	msg.add<uint16_t>(0);
-
-	// life leech
-	msg.add<uint16_t>(0);
-	msg.add<uint16_t>(0);
-
-	// mana leech chance
-	msg.add<uint16_t>(0);
-	msg.add<uint16_t>(0);
-
-	// mana leech
-	msg.add<uint16_t>(0);
-	msg.add<uint16_t>(0);
 }
 
 void ProtocolGame::AddOutfit(NetworkMessage& msg, const Outfit_t& outfit)

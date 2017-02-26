@@ -581,11 +581,6 @@ MagicEffectNames magicEffectNames = {
 	{"ferumbras",		CONST_ME_FERUMBRAS},
 	{"confettihorizontal",	CONST_ME_CONFETTI_HORIZONTAL},
 	{"confettivertical",	CONST_ME_CONFETTI_VERTICAL},
-	{"blacksmoke",		CONST_ME_BLACKSMOKE},
-	{"redsmoke",		CONST_ME_REDSMOKE},
-	{"yellowsmoke",		CONST_ME_YELLOWSMOKE},
-	{"greensmoke",		CONST_ME_GREENSMOKE},
-	{"purplesmoke",		CONST_ME_PURPLESMOKE},
 };
 
 ShootTypeNames shootTypeNames = {
@@ -637,8 +632,6 @@ ShootTypeNames shootTypeNames = {
 	{"crystallinearrow",	CONST_ANI_CRYSTALLINEARROW},
 	{"drillbolt",		CONST_ANI_DRILLBOLT},
 	{"envenomedarrow",	CONST_ANI_ENVENOMEDARROW},
-	{"gloothspear",		CONST_ANI_GLOOTHSPEAR},
-	{"simplearrow",		CONST_ANI_SIMPLEARROW},
 };
 
 CombatTypeNames combatTypeNames = {

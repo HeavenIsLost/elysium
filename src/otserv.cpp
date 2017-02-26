@@ -52,6 +52,8 @@ std::unique_lock<std::mutex> g_loaderUniqueLock(g_loaderLock);
 void startupErrorMessage(const std::string& errorStr)
 {
 	std::cout << "> ERROR: " << errorStr << std::endl;
+	std::cout << "Press Any key to close the server." << std::endl;
+	getchar();
 	g_loaderSignal.notify_all();
 }
 
@@ -176,11 +178,13 @@ void mainLoader(int, char*[], ServiceManager* services)
 	}
 
 	// load item data
+	/*
 	std::cout << ">> Loading items" << std::endl;
 	if (Item::items.loadFromOtb("data/items/items.otb") != ERROR_NONE) {
 		startupErrorMessage("Unable to load items (OTB)!");
 		return;
 	}
+	*/
 
 	if (!Item::items.loadFromXml()) {
 		startupErrorMessage("Unable to load items (XML)!");
