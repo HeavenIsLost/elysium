@@ -32,6 +32,10 @@ function Player:onLook(thing, position, distance)
 			if decayId ~= -1 then
 				description = string.format("%s\nDecays to: %d", description, decayId)
 			end
+			
+			if thing:getAttribute(ITEM_ATTRIBUTE_DECAYSTATE) == 1 then
+				description = string.format("%s\n decaying in %d seconds.", description, thing:getAttribute(ITEM_ATTRIBUTE_DURATION) / 1000)
+			end
 		elseif thing:isCreature() then
 			local str = "%s\nHealth: %d / %d"
 			if thing:getMaxMana() > 0 then
