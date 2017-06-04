@@ -328,6 +328,8 @@ class ItemType
 		uint16_t leveldoorTarget = 0;
 
 		bool isWriteOnce = false;
+
+		bool isProtection = false;
 	
 };
 

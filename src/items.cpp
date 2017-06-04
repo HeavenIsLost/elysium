@@ -520,7 +520,8 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 			else if (flagName == "key") {
 				it.type = ITEM_TYPE_KEY;
 			}
-			else if (flagName == "") {
+			else if (flagName == "protection") {
+				it.isProtection = true;
 			}
 			else if (flagName == "") {
 			}
