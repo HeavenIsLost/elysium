@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster name="serpent spawn" nameDescription="a serpent spawn" race="blood" experience="2000" speed="234" manacost="0">
+	<health now="3000" max="3000"/>
+	<look type="220" corpse="4388"/>
+	<targetchange interval="1000" chance="25"/>
+	<targetstrategies nearest="70" health="30" damage="0" random="0"/>
+	<flags>
+		<flag attackable="1"/>
+		<flag hostile="1"/>
+		<flag summonable="0"/>
+		<flag convinceable="0"/>
+		<flag illusionable="0"/>
+		<flag pushable="0"/>
+		<flag canpushitems="1"/>
+		<flag canpushcreatures="1"/>
+		<flag targetdistance="1"/>
+		<flag staticattack="90"/>
+		<flag runonhealth="275"/>
+	</flags>
+	<attacks>
+		<attack name="melee" interval="2000" skill="82" attack="62"/>
+		<attack name="poison" interval="2000" chance="13" range="7" min="-100" max="-300">
+			<attribute key="shootEffect" value="poison"/>
+			<attribute key="areaEffect" value="greenspark"/>
+		</attack>
+		<attack name="outfit" interval="2000" chance="9" range="7" item="3976" duration="4000">
+			<attribute key="areaEffect" value="blueshimmer"/>
+		</attack>
+		<attack name="paralyze_serpentspawn" interval="2000" chance="13" range="7"/>
+		<attack name="lifedrain" interval="2000" chance="15" length="8" spread="0" min="-150" max="-400">
+			<attribute key="areaEffect" value="rednote"/>
+		</attack>
+		<attack name="poison" interval="2000" chance="17" length="8" spread="3" min="-50" max="-500">
+			<attribute key="areaEffect" value="poison"/>
+		</attack>
+	</attacks>
+	<defenses armor="28" defense="40">
+		<defense name="healing" interval="2000" chance="17" min="300" max="400">
+			<attribute key="areaEffect" value="blueshimmer"/>
+		</defense>
+		<defense name="haste_serpentspawn" interval="2000" chance="9"/>	
+	</defenses>
+	<elements>
+		<element earthPercent="100"/>
+	</elements>
+	<immunities>
+		<immunity lifedrain="1"/>
+		<immunity paralyze="1"/>
+		<immunity invisible="1"/>
+	</immunities>
+	<voices interval="2000" chance="5">
+		<voice sentence="Ssssolus for the one"/>
+		<voice sentence="HISSSS" yell="1"/>
+		<voice sentence="Tsssse one will risssse again"/>
+		<voice sentence="I bring you deathhhh, mortalssss"/>
+	</voices>
+	<loot>
+		<item id="3732" chance="18000"/><!-- 18% green mushroom -->
+		<item id="3031" chance="80000" countmax="100"/><!-- 100 80% gold coin -->
+		<item id="3031" chance="40000" countmax="50"/><!-- 50 40% gold coin-->
+		<item id="3031" chance="60000" countmax="100"/><!-- 100 60% gold coin-->
+		<item id="3029" chance="6000"/><!-- 6% small sapphire -->
+		<item id="3450" chance="6000"/><!-- 6% power bolt -->
+		<item id="3061" chance="800"/><!-- 0.8% life crystal -->
+		<item id="2903" chance="3000"/><!-- 3% golden mug -->
+		<item id="4831" chance="500"/><!-- 0.5% old parchment -->
+		<item id="2842" chance="9000"/><!-- 9% gemmed book -->
+		<item id="3373" chance="600"/><!-- 0.6% strange helmet -->
+		<item id="3407" chance="2000"/><!-- 2% charmer's tiara -->
+		<item id="3392" chance="100"/><!-- 0.1% royal helmet -->
+		<item id="3386" chance="200"/><!-- 0.2% dragon scale mail -->
+		<item id="2853" chance="100000"><!-- bag -->
+			<item id="3280" chance="300"/><!-- 0.3% fire sword -->
+			<item id="3066" chance="1000"/><!-- 1% snakebite rod -->
+			<item id="3428" chance="400"/><!-- 0.4% tower shield -->
+			<item id="3052" chance="3000"/><!-- 3% life ring -->
+			<item id="3051" chance="3000"/><!-- 3% energy ring -->
+		</item>
+	</loot>
+</monster>

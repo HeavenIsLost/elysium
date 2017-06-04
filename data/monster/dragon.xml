@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster name="dragon" nameDescription="a dragon" race="blood" experience="700" speed="170" manacost="0">
+	<health now="1000" max="1000"/>
+	<look type="34" corpse="4025"/>
+	<targetchange interval="1000" chance="5"/>
+	<targetstrategies nearest="70" health="10" damage="10" random="10"/>
+	<flags>
+		<flag attackable="1"/>
+		<flag hostile="1"/>
+		<flag summonable="0"/>
+		<flag convinceable="0"/>
+		<flag illusionable="1"/>
+		<flag pushable="0"/>
+		<flag canpushitems="1"/>
+		<flag canpushcreatures="1"/>
+		<flag targetdistance="1"/>
+		<flag staticattack="90"/>
+		<flag runonhealth="300"/>
+	</flags>
+	<attacks>
+		<attack name="melee" interval="2000" skill="55" attack="42"/>
+		<attack name="fire" interval="2000" chance="15" range="7" radius="4" target="1" min="-55" max="-105">
+			<attribute key="shootEffect" value="fire"/>
+			<attribute key="areaEffect" value="firearea"/>
+		</attack>
+		<attack name="fire" interval="2000" chance="12" length="8" spread="3" min="-100" max="-160">
+			<attribute key="areaEffect" value="firearea"/>
+		</attack>
+	</attacks>
+	<defenses armor="25" defense="38">
+		<defense name="healing" interval="2000" chance="13" min="34" max="56">
+			<attribute key="areaEffect" value="blueshimmer"/>
+		</defense>
+	</defenses>
+	<elements>
+		<element firePercent="100"/>
+		<element earthPercent="100"/>
+	</elements>
+	<immunities>
+		<immunity paralyze="1"/>
+		<immunity invisible="1"/>
+	</immunities>
+	<voices interval="2000" chance="5">
+		<voice sentence="GROOAAARRR" yell="1"/>
+		<voice sentence="FCHHHHH" yell="1"/>
+	</voices>
+	<loot>
+		<item id="3583" chance="45000" countmax="3"/><!-- 3 45% dragon ham -->
+		<item id="3031" chance="80000" countmax="45"/><!-- 45 80% gold coin -->
+		<item id="3031" chance="50000" countmax="60"/><!-- 60 50% gold coin -->
+		<item id="3028" chance="400"/><!-- 0.4% small diamond -->
+		<item id="3449" chance="16000" countmax="10"/><!-- 10 16% burst arrow -->
+		<item id="3061" chance="100"/><!-- 0.1% life crystal -->
+		<item id="3351" chance="3000"/><!-- 3% steel helmet -->
+		<item id="3557" chance="2000"/><!-- 2% plate legs -->
+		<item id="2853" chance="100000"><!-- bag -->
+			<item id="3349" chance="10000"/><!-- 10% crossbow -->
+			<item id="3285" chance="4000"/><!-- 4% longsword -->
+			<item id="3301" chance="2000"/><!-- 2% broadsword -->
+			<item id="3275" chance="1000"/><!-- 1% double axe -->
+			<item id="3322" chance="500"/><!-- 0.5% dragon hammer -->
+			<item id="3297" chance="500"/><!-- 0.5% serpent sword -->
+			<item id="3294" chance="25000"/><!-- 25% short sword -->
+			<item id="3286" chance="20000"/><!-- 20% mace -->
+			<item id="3071" chance="1000"/><!-- 1% wand of inferno -->
+			<item id="3409" chance="15000"/><!-- 15% steel shield -->
+			<item id="3416" chance="300"/><!-- 0.3% dragon shield -->
+		</item>
+	</loot>
+</monster>

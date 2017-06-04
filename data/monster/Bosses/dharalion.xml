@@ -1,79 +1,79 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<monster name="Dharalion" nameDescription="Dharalion" race="blood" experience="570" speed="240">
-	<health now="380" max="380" />
-	<look type="203" corpse="6011" />
-	<targetchange interval="5000" chance="8" />
+<?xml version="1.0" encoding="UTF-8"?>
+<monster name="Dharalion" nameDescription="Dharalion" race="blood" experience="1200" speed="240" manacost="0">
+	<health now="1200" max="1200"/>
+	<look type="203" corpse="4160"/>
+	<targetchange interval="1000" chance="7"/>
+	<targetstrategies nearest="10" health="10" damage="20" random="60"/>
 	<flags>
-		<flag summonable="0" />
-		<flag attackable="1" />
-		<flag hostile="1" />
-		<flag illusionable="0" />
-		<flag convinceable="0" />
-		<flag pushable="0" />
-		<flag canpushitems="1" />
-		<flag canpushcreatures="1" />
-		<flag targetdistance="4" />
-		<flag staticattack="90" />
-		<flag runonhealth="0" />
+		<flag summonable="0"/>
+		<flag attackable="1"/>
+		<flag hostile="1"/>
+		<flag illusionable="0"/>
+		<flag convinceable="0"/>
+		<flag pushable="0"/>
+		<flag canpushitems="1"/>
+		<flag canpushcreatures="1"/>
+		<flag targetdistance="4"/>
+		<flag staticattack="90"/>
+		<flag runonhealth="0"/>
 	</flags>
 	<attacks>
-		<attack name="melee" interval="2000" min="0" max="-56" />
-		<attack name="manadrain" interval="1000" chance="15" range="7" min="-30" max="-60" />
+		<attack name="melee" interval="2000" skill="30" attack="28"/>
+		<attack name="manadrain" interval="1000" chance="15" range="7" min="-30" max="-60"/>
 		<attack name="energy" interval="1000" chance="13" range="7" min="-70" max="-90">
-			<attribute key="shootEffect" value="energy" />
-			<attribute key="areaEffect" value="energy" />
+			<attribute key="shootEffect" value="energy"/>
+			<attribute key="areaEffect" value="energy"/>
 		</attack>
-		<attack name="physical" interval="1000" chance="10" range="7" min="-80" max="-151">
-			<attribute key="shootEffect" value="suddendeath" />
+		<attack name="physical" interval="1000" chance="10" range="7" min="-130" max="-150">
+			<attribute key="shootEffect" value="death"/>
 		</attack>
-		<attack name="effect" interval="1000" chance="13" range="7">
-			<attribute key="shootEffect" value="poison" />
-			<attribute key="areaEffect" value="poison" />
+		<attack name="strength" interval="1000" chance="13" range="7">
+			<attribute key="shootEffect" value="poison"/>
+			<attribute key="areaEffect" value="poison"/>
 		</attack>
 	</attacks>
 	<defenses armor="15" defense="25">
 		<defense name="healing" interval="1000" chance="20" min="90" max="120">
-			<attribute key="areaEffect" value="blueshimmer" />
+			<attribute key="areaEffect" value="blueshimmer"/>
 		</defense>
-		<defense name="speed" interval="1000" chance="7" speedchange="300" duration="10000">
-			<attribute key="areaEffect" value="redshimmer" />
-		</defense>
+		<defense name="haste_dharalion" interval="1000" chance="7"/>
 	</defenses>
-	<immunities>
-		<immunity fire="1" />
-		<immunity earth="1" />
-		<immunity lifedrain="1" />
-		<immunity outfit="1" />
-		<immunity drunk="1" />
-		<immunity invisible="1" />
-	</immunities>
 	<summons maxSummons="2">
-		<summon name="demon skeleton" interval="1000" chance="6" max="2" />
+		<summon name="demon skeleton" interval="1000" chance="6" max="2"/>
 	</summons>
+	<elements>
+		<element firePercent="100"/>
+		<element earthPercent="100"/>
+	</elements>
+	<immunities>
+		<immunity lifedrain="1"/>	
+		<immunity outfit="1"/>
+		<immunity drunk="1"/>
+		<immunity invisible="1"/>
+	</immunities>
 	<voices interval="5000" chance="10">
-		<voice sentence="Feel my wrath!" />
-		<voice sentence="Noone will stop my ascension!" />
-		<voice sentence="My powers are divine!" />
+		<voice sentence="You desecrated this temple!"/>
+		<voice sentence="Noone will stop my ascension!"/>
+		<voice sentence="My powers are divine!"/>
+		<voice sentence="Muahahaha!"/>
 	</voices>
 	<loot>
-		<item id="1949" chance="10000" /><!-- scroll -->
-		<item id="2032" chance="4000" /><!-- bowl -->
-		<item name="oil lamp" chance="2857" />
-		<item name="crystal necklace" chance="1818" />
-		<item name="gold coin" countmax="20" chance="100000" />
-		<item name="yellow gem" chance="1333" />
-		<item name="life crystal" chance="2857" />
-		<item name="blank rune" chance="4000" />
-		<item id="2401" chance="3000" /><!-- staff -->
-		<item name="bow" chance="10000" />
-		<item name="arrow" countmax="10" chance="20000" />
-		<item name="closed trap" chance="5000" />
-		<item name="inkwell" chance="33333" />
-		<item name="sandals" chance="20000" />
-		<item name="green tunic" chance="5000" />
-		<item name="melon" chance="6666" />
-		<item name="bread" countmax="3" chance="20000" />
-		<item name="sling herb" countmax="1" chance="10000" />
-		<item name="worm" countmax="10" chance="50000" />
+		<item id="3600" chance="14000"/><!-- 14% bread -->
+		<item id="3593" chance="20000"/><!-- 20% melon -->
+		<item id="3037" chance="400"/><!-- 0.4 yellow gem -->
+		<item id="3147" chance="18000"/><!-- 18% blank rune -->
+		<item id="3061" chance="1500"/><!-- 1.5% life crystal -->
+		<item id="2902" chance="6500"/><!-- 6.5% bowl -->
+		<item id="3738" chance="7000"/><!-- 7% sling herb -->
+		<item id="3661" chance="9000"/><!-- 9% grave flower -->
+		<item id="2815" chance="30000"/><!-- 30% scroll -->
+		<item id="3509" chance="9000"/><!-- 9% inkwell -->
+		<item id="3563" chance="9000"/><!-- 9% green tunic -->
+		<item id="3551" chance="9000"/><!-- 9% sandals -->
+		<item id="2853" chance="100000"><!-- bag -->
+			<item id="2917" chance="9000"/><!-- 9% candlestick -->
+			<item id="3289" chance="11000"/><!-- 11% staff -->
+			<item id="3082" chance="2000"/><!-- 2% elven amulet -->
+		</item>
 	</loot>
 </monster>
