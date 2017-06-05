@@ -433,9 +433,6 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 			else if (flagName == "decay") {
 				it.canDecay = true;
 			}
-			else if (flagName == "hang") {
-				it.isHangable = true;
-			}
 			else if (flagName == "food") {
 				it.isFood = true;
 			}
@@ -484,6 +481,9 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 			else if (flagName == "distuse") {
 				it.distUse = true;
 			}
+			else if (flagName == "hang") {
+				it.isHangable = true;
+			}
 			else if (flagName == "hooksouth") {
 				it.isVertical = true;
 			}
@@ -511,11 +511,11 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 			else if (flagName == "namedoor") {
 				it.isNamedoor = true;
 			}
-			else if (flagName == "writeonce") {
-				it.isWriteOnce = true;
-			}
 			else if (flagName == "leveldoor") {
 				it.isLevelDoor = true;
+			}
+			else if (flagName == "writeonce") {
+				it.isWriteOnce = true;
 			}
 			else if (flagName == "key") {
 				it.type = ITEM_TYPE_KEY;
