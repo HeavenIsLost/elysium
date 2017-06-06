@@ -18,7 +18,7 @@ Configure the database details in config.lua.
 Run tfs executable you compiled and login with otclient(default admin account pass: test/test).
 Done!
 
-* Our custom Remere's Map Editor repository: Rhttps://github.com/HeavenIsLost/ElysiumRME
+* Our custom Remere's Map Editor repository: https://github.com/HeavenIsLost/ElysiumRME
 * Our custom OTclient repository: https://github.com/HeavenIsLost/ElysiumOtclient
 
 ### Support
