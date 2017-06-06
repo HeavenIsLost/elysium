@@ -504,15 +504,19 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 			}
 			else if (flagName == "keydoor") {
 				it.isKeydoor = true;
+				it.type = ITEM_TYPE_DOOR;
 			}
 			else if (flagName == "questdoor") {
 				it.isQuestDoor = true;
+				it.type = ITEM_TYPE_DOOR;
 			}
 			else if (flagName == "namedoor") {
 				it.isNamedoor = true;
+				it.type = ITEM_TYPE_DOOR;
 			}
 			else if (flagName == "leveldoor") {
 				it.isLevelDoor = true;
+				it.type = ITEM_TYPE_DOOR;
 			}
 			else if (flagName == "writeonce") {
 				it.isWriteOnce = true;
