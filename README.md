@@ -8,16 +8,18 @@ Heavily based on https://github.com/otland/forgottenserver/
 
 * [Compiling](https://github.com/otland/forgottenserver/wiki/Compiling)
 
-* Download our compiled(windows) otclient fork here:
-* Download our compiled(windows) rme fork here:
+* Download our compiled(windows) otclient fork here: http://www.mediafire.com/file/1koxi85r159zrd0/otclient_elysium.7z
+* Download our compiled(windows) rme fork here: http://www.mediafire.com/file/8mi07wcnccpv2vv/rme_elysium.7z
 
 Compile this project.
 import schema.sql and then starter_schema.sql to a new mysql database.
-The default admin account pass: test/test 
-Config the database details in config.lua.
+Configure the database details in config.lua.
 
-Run tfs executable you compiled and login with otclient.
+Run tfs executable you compiled and login with otclient(default admin account pass: test/test).
 Done!
+
+* Our custom Remere's Map Editor repository: Rhttps://github.com/HeavenIsLost/ElysiumRME
+* Our custom OTclient repository: https://github.com/HeavenIsLost/ElysiumOtclient
 
 ### Support
 
