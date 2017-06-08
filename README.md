@@ -4,6 +4,8 @@ Elysium OpenTibia Server [![Build Status](https://travis-ci.org/HeavenIsLost/ely
 This is an attempt to build free and open-source MMORPG server with the aim to reproduce Tibia 7.7 behavior and content.
 Heavily based on https://github.com/otland/forgottenserver/
 
+Trello: https://trello.com/b/JxX6M0GX/elysium
+
 ### Getting Started
 
 * [Compiling](https://github.com/otland/forgottenserver/wiki/Compiling)
