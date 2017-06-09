@@ -132,6 +132,7 @@ class QTreeNode
 		bool leaf = false;
 
 		friend class Map;
+		friend class IOMapSerialize;
 };
 
 class QTreeLeafNode final : public QTreeNode
@@ -257,6 +258,10 @@ class Map
 
 		QTreeLeafNode* getQTNode(uint16_t x, uint16_t y) {
 			return QTreeNode::getLeafStatic<QTreeLeafNode*, QTreeNode*>(&root, x, y);
+		}
+
+		const QTreeNode* getQtTreeRoot() const {
+			return &root;
 		}
 
 		Spawns spawns;

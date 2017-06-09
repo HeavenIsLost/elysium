@@ -46,6 +46,7 @@ bool Map::loadMap(const std::string& identifier, bool loadHouses)
 
 		IOMapSerialize::loadHouseInfo();
 		IOMapSerialize::loadHouseItems(this);
+		IOMapSerialize::loadWorldItems(this);
 	}
 	return true;
 }
@@ -71,6 +72,9 @@ bool Map::save()
 			break;
 		}
 	}
+
+	saved = IOMapSerialize::saveWorldItems();
+
 	return saved;
 }
 

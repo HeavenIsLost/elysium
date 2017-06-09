@@ -110,6 +110,7 @@ bool IOMapSerialize::saveHouseItems()
 	bool success = transaction.commit();
 	std::cout << "> Saved house items in: " <<
 	          (OTSYS_TIME() - start) / (1000.) << " s" << std::endl;
+
 	return success;
 }
 
@@ -369,4 +370,146 @@ bool IOMapSerialize::saveHouseInfo()
 	}
 
 	return transaction.commit();
+}
+
+void IOMapSerialize::loadWorldItems(Map * map)
+{
+	int64_t start = OTSYS_TIME();
+
+	DBResult_ptr result = Database::getInstance().storeQuery("SELECT `data` FROM `world_tile_store`;");
+	if (!result) {
+		return;
+	}
+
+	do {
+		unsigned long attrSize;
+		const char* attr = result->getStream("data", attrSize);
+
+		PropStream propStream;
+		propStream.init(attr, attrSize);
+
+		uint16_t x, y;
+		uint8_t z;
+		if (!propStream.read<uint16_t>(x) || !propStream.read<uint16_t>(y) || !propStream.read<uint8_t>(z)) {
+			continue;
+		}
+
+		Tile* tile = map->getTile(x, y, z);
+		if (!tile) {
+			continue;
+		}
+
+		uint32_t item_count;
+		if (!propStream.read<uint32_t>(item_count)) {
+			continue;
+		}
+
+		while (item_count--) {
+			loadItem(propStream, tile);
+		}
+	} while (result->next());
+
+	std::cout << "> Loaded world items in: " << (OTSYS_TIME() - start) / (1000.) << " s" << std::endl;
+}
+
+bool IOMapSerialize::saveWorldItems()
+{
+	int64_t start = OTSYS_TIME();
+	Database& db = Database::getInstance();
+	std::ostringstream query;
+
+	//Start the transaction
+	DBTransaction transaction;
+	if (!transaction.begin()) {
+		return false;
+	}
+
+	//clear old tile data
+	if (!db.executeQuery("DELETE FROM `world_tile_store`")) {
+		return false;
+	}
+
+	DBInsert stmt("INSERT INTO `world_tile_store` (`data`) VALUES ");
+
+	PropWriteStream stream;
+
+	std::vector<const QTreeNode*> nodes{
+		g_game.map.getQtTreeRoot(),
+	};
+
+	do {
+		const QTreeNode* node = nodes.back();
+		nodes.pop_back();
+		if (node->isLeaf()) {
+			const QTreeLeafNode* leafNode = static_cast<const QTreeLeafNode*>(node);
+			for (uint8_t z = 0; z < MAP_MAX_LAYERS; ++z) {
+				Floor* floor = leafNode->getFloor(z);
+				if (!floor) {
+					continue;
+				}
+
+				for (auto& row : floor->tiles) {
+					for (auto tile : row) {
+						if (!tile || tile->hasFlag(TILESTATE_HOUSE) || tile->hasFlag(TILESTATE_PROTECTIONZONE) || tile->hasFlag(TILESTATE_REFRESH)) {
+							continue;
+						}
+
+						TileItemVector* itemList = tile->getItemList();
+						if (!itemList) {
+							continue;
+						}
+
+						std::forward_list<Item*> items;
+						uint16_t count = 0;
+
+						for (Item* item : *itemList) {
+							if (item->isCleanable()) {
+								items.push_front(item);
+								++count;
+							}
+						}
+
+						if (!items.empty()) {
+							const Position& tilePosition = tile->getPosition();
+							stream.write<uint16_t>(tilePosition.x);
+							stream.write<uint16_t>(tilePosition.y);
+							stream.write<uint8_t>(tilePosition.z);
+
+							stream.write<uint32_t>(count);
+							for (const Item* item : items) {
+								saveItem(stream, item);
+							}
+						}
+
+						size_t attributesSize;
+						const char* attributes = stream.getStream(attributesSize);
+						if (attributesSize > 0) {
+							query << db.escapeBlob(attributes, attributesSize);
+							if (!stmt.addRow(query)) {
+								return false;
+							}
+
+							stream.clear();
+						}
+					}
+				}
+			}
+		} else {
+			for (auto childNode : node->child) {
+				if (childNode) {
+					nodes.push_back(childNode);
+				}
+			}
+		}
+	} while (!nodes.empty());
+
+	if (!stmt.execute()) {
+		return false;
+	}
+
+	bool success = transaction.commit();
+	std::cout << "> Saved world items in: " <<
+		(OTSYS_TIME() - start) / (1000.) << " s" << std::endl;
+
+	return success;
 }

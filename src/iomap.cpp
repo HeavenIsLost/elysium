@@ -294,6 +294,19 @@ bool IOMap::parseTileArea(OTB::Loader& loader, const OTB::Node& tileAreaNode, Ma
 					if ((flags & OTBM_TILEFLAG_NOLOGOUT) != 0) {
 						tileflags |= TILESTATE_NOLOGOUT;
 					}
+
+					if ((flags & OTBM_TILEFLAG_REFRESH) != 0) {
+						if (house) {
+							std::cout << "Warning [x:" << x << ", y:" << y << ", z:" << z << "] " << " House tile flagged as refreshing!";
+						}
+
+						tileflags |= TILESTATE_REFRESH;
+					}
+
+					if (isHouseTile) {
+						tileflags |= TILESTATE_HOUSE;
+					}
+
 					break;
 				}
 

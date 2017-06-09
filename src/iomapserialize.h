@@ -31,6 +31,9 @@ class IOMapSerialize
 		static bool loadHouseInfo();
 		static bool saveHouseInfo();
 
+		static void loadWorldItems(Map* map);
+		static bool saveWorldItems();
+
 	protected:
 		static void saveItem(PropWriteStream& stream, const Item* item);
 		static void saveTile(PropWriteStream& stream, const Tile* tile);

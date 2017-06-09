@@ -330,6 +330,10 @@ CREATE TABLE IF NOT EXISTS `tile_store` (
   FOREIGN KEY (`house_id`) REFERENCES `houses` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS `world_tile_store` (
+  `data` longblob NOT NULL
+) ENGINE=InnoDB;
+
 DROP TRIGGER IF EXISTS `ondelete_players`;
 DROP TRIGGER IF EXISTS `oncreate_guilds`;
 
