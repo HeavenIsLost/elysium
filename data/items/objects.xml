@@ -1564,14 +1564,14 @@
     <attribute key="flag" value="Unmove"/>
     <attribute key="flag" value="Unlay"/>
   </item>
-  <item id="390" article="a" name="lavhole">
+  <item id="390" article="a" name="lava hole">
     <attribute key="description" value="It seems to be inactive."/>
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Unpass"/>
     <attribute key="flag" value="Unmove"/>
     <attribute key="flag" value="Unlay"/>
   </item>
-  <item id="391" article="a" name="lavhole">
+  <item id="391" article="a" name="lava hole">
     <attribute key="description" value="It emits heat and light."/>
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Unpass"/>
@@ -7869,7 +7869,7 @@
     <attribute key="flag" value="Unlay"/>
     <attribute key="fluidSource" value="water"/>
   </item>
-  <item id="1441" article="a" name="lavwall">
+  <item id="1441" article="a" name="lava wall">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Unpass"/>
     <attribute key="flag" value="Unmove"/>
@@ -7879,7 +7879,7 @@
     <attribute key="Brightness" value="2"/>
     <attribute key="LightColor" value="199"/>
   </item>
-  <item id="1442" article="a" name="lavwall">
+  <item id="1442" article="a" name="lava wall">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Unpass"/>
     <attribute key="flag" value="Unmove"/>
@@ -7889,7 +7889,7 @@
     <attribute key="Brightness" value="2"/>
     <attribute key="LightColor" value="199"/>
   </item>
-  <item id="1443" article="a" name="lavwall">
+  <item id="1443" article="a" name="lava wall">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Unpass"/>
     <attribute key="flag" value="Unmove"/>
@@ -7899,7 +7899,7 @@
     <attribute key="Brightness" value="2"/>
     <attribute key="LightColor" value="199"/>
   </item>
-  <item id="1444" article="a" name="lavwall">
+  <item id="1444" article="a" name="lava wall">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Unpass"/>
     <attribute key="flag" value="Unmove"/>
@@ -7909,7 +7909,7 @@
     <attribute key="Brightness" value="2"/>
     <attribute key="LightColor" value="199"/>
   </item>
-  <item id="1445" article="a" name="lavwall">
+  <item id="1445" article="a" name="lava wall">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Unpass"/>
     <attribute key="flag" value="Unmove"/>
@@ -7919,7 +7919,7 @@
     <attribute key="Brightness" value="2"/>
     <attribute key="LightColor" value="199"/>
   </item>
-  <item id="1446" article="a" name="lavwall">
+  <item id="1446" article="a" name="lava wall">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Unpass"/>
     <attribute key="flag" value="Unmove"/>
@@ -7929,7 +7929,7 @@
     <attribute key="Brightness" value="2"/>
     <attribute key="LightColor" value="199"/>
   </item>
-  <item id="1447" article="a" name="lavwall">
+  <item id="1447" article="a" name="lava wall">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Unpass"/>
     <attribute key="flag" value="Unmove"/>
@@ -7939,7 +7939,7 @@
     <attribute key="Brightness" value="2"/>
     <attribute key="LightColor" value="199"/>
   </item>
-  <item id="1448" article="a" name="lavwall">
+  <item id="1448" article="a" name="lava wall">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Unpass"/>
     <attribute key="flag" value="Unmove"/>
@@ -7949,7 +7949,7 @@
     <attribute key="Brightness" value="2"/>
     <attribute key="LightColor" value="199"/>
   </item>
-  <item id="1449" article="a" name="lavwall">
+  <item id="1449" article="a" name="lava wall">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Unpass"/>
     <attribute key="flag" value="Unmove"/>
@@ -11943,7 +11943,7 @@
     <attribute key="flag" value="Unlay"/>
     <attribute key="FontSize" value="2"/>
   </item>
-  <item id="2050" article="a" name="cobrstatue">
+  <item id="2050" article="a" name="cobra statue">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Text"/>
     <attribute key="flag" value="Unpass"/>
@@ -11951,7 +11951,7 @@
     <attribute key="flag" value="Unlay"/>
     <attribute key="FontSize" value="2"/>
   </item>
-  <item id="2051" article="a" name="cobrstatue">
+  <item id="2051" article="a" name="cobra statue">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Text"/>
     <attribute key="flag" value="Unpass"/>
@@ -11967,7 +11967,7 @@
     <attribute key="flag" value="Unlay"/>
     <attribute key="FontSize" value="2"/>
   </item>
-  <item id="2053" article="a" name="cobrstatue">
+  <item id="2053" article="a" name="cobra statue">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Text"/>
     <attribute key="flag" value="Unpass"/>
@@ -11975,7 +11975,7 @@
     <attribute key="flag" value="Unlay"/>
     <attribute key="FontSize" value="2"/>
   </item>
-  <item id="2054" article="a" name="cobrstatue">
+  <item id="2054" article="a" name="cobra statue">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Text"/>
     <attribute key="flag" value="Unpass"/>
@@ -11983,7 +11983,7 @@
     <attribute key="flag" value="Unlay"/>
     <attribute key="FontSize" value="2"/>
   </item>
-  <item id="2055" article="a" name="cobrstatue">
+  <item id="2055" article="a" name="cobra statue">
     <attribute key="flag" value="Unmove"/>
     <attribute key="flag" value="Hang"/>
   </item>
@@ -11991,7 +11991,7 @@
     <attribute key="flag" value="Unmove"/>
     <attribute key="flag" value="Hang"/>
   </item>
-  <item id="2057" article="a" name="cobrstatue">
+  <item id="2057" article="a" name="cobra statue">
     <attribute key="flag" value="Unmove"/>
     <attribute key="flag" value="Hang"/>
   </item>
@@ -14191,7 +14191,7 @@
     <attribute key="AvoidDamageTypes" value="none"/>
     <attribute key="Elevation" value="8"/>
   </item>
-  <item id="2366" article="a" name="sofchair">
+  <item id="2366" article="a" name="sofa chair">
     <attribute key="flag" value="Avoid"/>
     <attribute key="flag" value="Rotate"/>
     <attribute key="flag" value="Destroy"/>
@@ -14201,7 +14201,7 @@
     <attribute key="destroyTo" value="3139"/>
     <attribute key="Elevation" value="8"/>
   </item>
-  <item id="2367" article="a" name="sofchair">
+  <item id="2367" article="a" name="sofa chair">
     <attribute key="flag" value="Avoid"/>
     <attribute key="flag" value="Rotate"/>
     <attribute key="flag" value="Destroy"/>
@@ -14211,7 +14211,7 @@
     <attribute key="destroyTo" value="3139"/>
     <attribute key="Elevation" value="8"/>
   </item>
-  <item id="2368" article="a" name="sofchair">
+  <item id="2368" article="a" name="sofa chair">
     <attribute key="flag" value="Avoid"/>
     <attribute key="flag" value="Rotate"/>
     <attribute key="flag" value="Destroy"/>
@@ -14221,7 +14221,7 @@
     <attribute key="destroyTo" value="3139"/>
     <attribute key="Elevation" value="8"/>
   </item>
-  <item id="2369" article="a" name="sofchair">
+  <item id="2369" article="a" name="sofa chair">
     <attribute key="flag" value="Avoid"/>
     <attribute key="flag" value="Rotate"/>
     <attribute key="flag" value="Destroy"/>
@@ -15878,7 +15878,7 @@
     <attribute key="duration" value="240"/>
     <attribute key="DisguiseTarget" value="2773"/>
   </item>
-  <item id="2568" article="a" name="cobrstatue" editorsuffix="(disguise)">
+  <item id="2568" article="a" name="cobra statue" editorsuffix="(disguise)">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Text"/>
     <attribute key="flag" value="Unpass"/>
@@ -19305,7 +19305,7 @@
     <attribute key="flag" value="Take"/>
     <attribute key="Weight" value="1400"/>
   </item>
-  <item id="3104" article="a" name="bananskin">
+  <item id="3104" article="a" name="banana skin">
     <attribute key="flag" value="Take"/>
     <attribute key="Weight" value="30"/>
   </item>
@@ -20899,7 +20899,7 @@
     <attribute key="attack" value="40"/>
     <attribute key="defense" value="30"/>
   </item>
-  <item id="3313" article="an" name="obsidilance">
+  <item id="3313" article="an" name="obsidian lance">
     <attribute key="flag" value="MultiUse"/>
     <attribute key="flag" value="Take"/>
     <attribute key="flag" value="Weapon"/>
@@ -21274,7 +21274,7 @@
     <attribute key="attack" value="18"/>
     <attribute key="defense" value="8"/>
   </item>
-  <item id="3348" article="a" name="bananstaff">
+  <item id="3348" article="a" name="banana staff">
     <attribute key="flag" value="MultiUse"/>
     <attribute key="flag" value="Take"/>
     <attribute key="flag" value="Weapon"/>
@@ -22001,7 +22001,7 @@
     <attribute key="defense" value="28"/>
     <attribute key="weaponType" value="Shield"/>
   </item>
-  <item id="3436" article="a" name="medusshield">
+  <item id="3436" article="a" name="medusa shield">
     <attribute key="flag" value="Take"/>
     <attribute key="flag" value="Shield"/>
     <attribute key="flag" value="Equipment"/>
@@ -24058,37 +24058,37 @@
     <attribute key="flag" value="Unmove"/>
     <attribute key="flag" value="Unlay"/>
   </item>
-  <item id="3755" article="a" name="jungle umbrellplant">
+  <item id="3755" article="a" name="jungle umbrella plant">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Unpass"/>
     <attribute key="flag" value="Unmove"/>
     <attribute key="flag" value="Unlay"/>
   </item>
-  <item id="3756" article="a" name="jungle umbrellplant">
+  <item id="3756" article="a" name="jungle umbrella plant">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Unpass"/>
     <attribute key="flag" value="Unmove"/>
     <attribute key="flag" value="Unlay"/>
   </item>
-  <item id="3757" article="a" name="jungle umbrellplant">
+  <item id="3757" article="a" name="jungle umbrella plant">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Unpass"/>
     <attribute key="flag" value="Unmove"/>
     <attribute key="flag" value="Unlay"/>
   </item>
-  <item id="3758" article="a" name="jungle umbrellplant">
+  <item id="3758" article="a" name="jungle umbrella plant">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Unpass"/>
     <attribute key="flag" value="Unmove"/>
     <attribute key="flag" value="Unlay"/>
   </item>
-  <item id="3759" article="a" name="jungle umbrellplant">
+  <item id="3759" article="a" name="jungle umbrella plant">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Unpass"/>
     <attribute key="flag" value="Unmove"/>
     <attribute key="flag" value="Unlay"/>
   </item>
-  <item id="3760" article="a" name="jungle umbrellplant">
+  <item id="3760" article="a" name="jungle umbrella plant">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Unpass"/>
     <attribute key="flag" value="Unmove"/>
@@ -31357,7 +31357,7 @@
     <attribute key="flag" value="Take"/>
     <attribute key="Weight" value="500"/>
   </item>
-  <item id="4839" article="a" name="hydregg">
+  <item id="4839" article="a" name="hydra egg">
     <attribute key="flag" value="Take"/>
     <attribute key="Weight" value="5000"/>
   </item>
@@ -32409,7 +32409,7 @@
     <attribute key="flag" value="Unthrow"/>
     <attribute key="flag" value="Unlay"/>
   </item>
-  <item id="5011" article="a" name="lavwall">
+  <item id="5011" article="a" name="lava wall">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Unpass"/>
     <attribute key="flag" value="Unmove"/>
@@ -32419,7 +32419,7 @@
     <attribute key="Brightness" value="2"/>
     <attribute key="LightColor" value="199"/>
   </item>
-  <item id="5012" article="a" name="lavwall">
+  <item id="5012" article="a" name="lava wall">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Unpass"/>
     <attribute key="flag" value="Unmove"/>
@@ -32863,7 +32863,7 @@
     <attribute key="flag" value="Unmove"/>
     <attribute key="flag" value="Unlay"/>
   </item>
-  <item id="5074" article="a" name="lavfountain">
+  <item id="5074" article="a" name="lava fountain">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Unpass"/>
     <attribute key="flag" value="Unmove"/>
@@ -32872,7 +32872,7 @@
     <attribute key="Brightness" value="2"/>
     <attribute key="LightColor" value="199"/>
   </item>
-  <item id="5075" article="a" name="lavfountain">
+  <item id="5075" article="a" name="lava fountain">
     <attribute key="flag" value="Bottom"/>
     <attribute key="flag" value="Unpass"/>
     <attribute key="flag" value="Unmove"/>
@@ -32913,7 +32913,7 @@
     <attribute key="flag" value="Unlay"/>
     <attribute key="fluidSource" value="water"/>
   </item>
-  <item id="5080" article="a" name="pandteddy">
+  <item id="5080" article="a" name="panda teddy">
     <attribute key="flag" value="UseEvent"/>
     <attribute key="flag" value="Take"/>
     <attribute key="Weight" value="600"/>
