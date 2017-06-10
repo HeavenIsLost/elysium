@@ -18728,6 +18728,7 @@
     <attribute key="decayTo" value="0"/>
     <attribute key="charges" value="200"/>
     <attribute key="showcharges" value="1"/>
+	<attribute key="showattributes" value="1" />
     <attribute key="absorbPercentEnergy" value="10"/>
   </item>
   <item id="3046" article="a" name="magic light wand">
@@ -18764,6 +18765,7 @@
     <attribute key="decayTo" value="0"/>
     <attribute key="charges" value="20"/>
     <attribute key="showcharges" value="1"/>
+	<attribute key="showattributes" value="1" />
     <attribute key="absorbPercentPhysical" value="25"/>
     <attribute key="absorbPercentFire" value="25"/>
     <attribute key="absorbPercentEnergy" value="25"/>
@@ -18777,6 +18779,7 @@
     <attribute key="Weight" value="100"/>
     <attribute key="SlotType" value="ring"/>
     <attribute key="showduration" value="1"/>
+	<attribute key="transformEquipTo" value="3086" />
   </item>
   <item id="3050" article="a" name="power ring">
     <attribute key="flag" value="MovementEvent"/>
@@ -18786,6 +18789,7 @@
     <attribute key="Weight" value="80"/>
     <attribute key="SlotType" value="ring"/>
     <attribute key="showduration" value="1"/>
+	<attribute key="transformEquipTo" value="3087" />
   </item>
   <item id="3051" article="an" name="energy ring">
     <attribute key="flag" value="MovementEvent"/>
@@ -18795,6 +18799,7 @@
     <attribute key="Weight" value="80"/>
     <attribute key="SlotType" value="ring"/>
     <attribute key="showduration" value="1"/>
+	<attribute key="transformEquipTo" value="3088" />
   </item>
   <item id="3052" article="a" name="life ring">
     <attribute key="flag" value="MovementEvent"/>
@@ -18804,6 +18809,7 @@
     <attribute key="Weight" value="80"/>
     <attribute key="SlotType" value="ring"/>
     <attribute key="showduration" value="1"/>
+	<attribute key="transformEquipTo" value="3089" />
   </item>
   <item id="3053" article="a" name="time ring">
     <attribute key="flag" value="MovementEvent"/>
@@ -18813,6 +18819,7 @@
     <attribute key="Weight" value="90"/>
     <attribute key="SlotType" value="ring"/>
     <attribute key="showduration" value="1"/>
+	<attribute key="transformEquipTo" value="3090" />
   </item>
   <item id="3054" article="a" name="silver amulet">
     <attribute key="flag" value="Take"/>
@@ -18823,6 +18830,7 @@
     <attribute key="decayTo" value="0"/>
     <attribute key="charges" value="200"/>
     <attribute key="showcharges" value="1"/>
+	<attribute key="showattributes" value="1" />
     <attribute key="absorbPercentEarth" value="10"/>
   </item>
   <item id="3055" article="a" name="platinum amulet">
@@ -18843,6 +18851,7 @@
     <attribute key="decayTo" value="0"/>
     <attribute key="charges" value="200"/>
     <attribute key="showcharges" value="1"/>
+	<attribute key="showattributes" value="1" />
     <attribute key="absorbPercentManaDrain" value="15"/>
   </item>
   <item id="3057" article="an" name="amulet of loss">
@@ -19036,8 +19045,8 @@
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="750"/>
     <attribute key="SlotType" value="feet"/>
-    <attribute key="SkillNumber" value="4"/>
-    <attribute key="SkillModification" value="20"/>
+	<attribute key="speed" value="40" />
+	<attribute key="showattributes" value="1" />
   </item>
   <item id="3080" article="a" name="broken amulet">
     <attribute key="flag" value="Take"/>
@@ -19054,6 +19063,7 @@
     <attribute key="decayTo" value="0"/>
     <attribute key="charges" value="5"/>
     <attribute key="showcharges" value="1"/>
+	<attribute key="showattributes" value="1" />
     <attribute key="absorbPercentPhysical" value="80"/>
   </item>
   <item id="3082" article="an" name="elven amulet">
@@ -19065,6 +19075,7 @@
     <attribute key="decayTo" value="0"/>
     <attribute key="charges" value="50"/>
     <attribute key="showcharges" value="1"/>
+	<attribute key="showattributes" value="1" />
     <attribute key="absorbPercentPhysical" value="10"/>
     <attribute key="absorbPercentFire" value="10"/>
     <attribute key="absorbPercentEnergy" value="10"/>
@@ -19079,6 +19090,7 @@
     <attribute key="decayTo" value="0"/>
     <attribute key="charges" value="150"/>
     <attribute key="showcharges" value="1"/>
+	<attribute key="showattributes" value="1" />
     <attribute key="absorbPercentLifeDrain" value="20"/>
   </item>
   <item id="3084" article="a" name="protection amulet">
@@ -19090,6 +19102,7 @@
     <attribute key="decayTo" value="0"/>
     <attribute key="charges" value="250"/>
     <attribute key="showcharges" value="1"/>
+	<attribute key="showattributes" value="1" />
     <attribute key="absorbPercentPhysical" value="6"/>
   </item>
   <item id="3085" article="a" name="dragon necklace">
@@ -19101,6 +19114,7 @@
     <attribute key="decayTo" value="0"/>
     <attribute key="charges" value="200"/>
     <attribute key="showcharges" value="1"/>
+	<attribute key="showattributes" value="1" />
     <attribute key="absorbPercentFire" value="8"/>
   </item>
   <item id="3086" article="a" name="stealth ring">
@@ -19111,11 +19125,12 @@
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="100"/>
     <attribute key="SlotType" value="ring"/>
-    <attribute key="SkillNumber" value="16"/>
-    <attribute key="SkillModification" value="1"/>
     <attribute key="decayTo" value="0"/>
     <attribute key="duration" value="600"/>
-    <attribute key="showduration" value="1"/>
+	<attribute key="showduration" value="1" />
+	<attribute key="showattributes" value="1" />
+	<attribute key="invisible" value="1" />
+	<attribute key="transformDeEquipTo" value="3049" />
   </item>
   <item id="3087" article="a" name="power ring">
     <attribute key="flag" value="MovementEvent"/>
@@ -19125,11 +19140,12 @@
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="80"/>
     <attribute key="SlotType" value="ring"/>
-    <attribute key="SkillNumber" value="11"/>
-    <attribute key="SkillModification" value="6"/>
     <attribute key="decayTo" value="0"/>
     <attribute key="duration" value="1800"/>
     <attribute key="showduration" value="1"/>
+	<attribute key="showattributes" value="1" />
+	<attribute key="skillFist" value="6" />
+	<attribute key="transformDeEquipTo" value="3050" />
   </item>
   <item id="3088" article="an" name="energy ring">
     <attribute key="flag" value="MovementEvent"/>
@@ -19139,11 +19155,12 @@
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="80"/>
     <attribute key="SlotType" value="ring"/>
-    <attribute key="SkillNumber" value="21"/>
-    <attribute key="SkillModification" value="1"/>
     <attribute key="decayTo" value="0"/>
     <attribute key="duration" value="600"/>
     <attribute key="showduration" value="1"/>
+	<attribute key="showattributes" value="1" />
+	<attribute key="transformDeEquipTo" value="3051" />
+	<attribute key="manashield" value="1" />
   </item>
   <item id="3089" article="a" name="life ring">
     <attribute key="flag" value="MovementEvent"/>
@@ -19153,11 +19170,15 @@
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="80"/>
     <attribute key="SlotType" value="ring"/>
-    <attribute key="SkillNumber" value="14"/>
-    <attribute key="SkillModification" value="3"/>
     <attribute key="decayTo" value="0"/>
     <attribute key="duration" value="1200"/>
     <attribute key="showduration" value="1"/>
+	<attribute key="showattributes" value="1" />
+	<attribute key="healthGain" value="2" />
+	<attribute key="healthTicks" value="6000" />
+	<attribute key="manaGain" value="8" />
+	<attribute key="manaTicks" value="6000" />
+	<attribute key="transformDeEquipTo" value="3052" />
   </item>
   <item id="3090" article="a" name="time ring">
     <attribute key="flag" value="MovementEvent"/>
@@ -19167,11 +19188,12 @@
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="90"/>
     <attribute key="SlotType" value="ring"/>
-    <attribute key="SkillNumber" value="4"/>
-    <attribute key="SkillModification" value="30"/>
     <attribute key="decayTo" value="0"/>
     <attribute key="duration" value="600"/>
     <attribute key="showduration" value="1"/>
+	<attribute key="showattributes" value="1" />
+	<attribute key="speed" value="60" />
+	<attribute key="transformDeEquipTo" value="3053" />
   </item>
   <item id="3091" article="a" name="sword ring">
     <attribute key="flag" value="MovementEvent"/>
@@ -19181,6 +19203,7 @@
     <attribute key="Weight" value="90"/>
     <attribute key="SlotType" value="ring"/>
     <attribute key="showduration" value="1"/>
+	<attribute key="transformEquipTo" value="3094" />
   </item>
   <item id="3092" article="an" name="axe ring">
     <attribute key="flag" value="MovementEvent"/>
@@ -19190,6 +19213,7 @@
     <attribute key="Weight" value="90"/>
     <attribute key="SlotType" value="ring"/>
     <attribute key="showduration" value="1"/>
+	<attribute key="transformEquipTo" value="3095" />
   </item>
   <item id="3093" article="a" name="club ring">
     <attribute key="flag" value="MovementEvent"/>
@@ -19199,6 +19223,7 @@
     <attribute key="Weight" value="90"/>
     <attribute key="SlotType" value="ring"/>
     <attribute key="showduration" value="1"/>
+	<attribute key="transformEquipTo" value="3096" />
   </item>
   <item id="3094" article="a" name="sword ring">
     <attribute key="flag" value="MovementEvent"/>
@@ -19208,11 +19233,11 @@
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="90"/>
     <attribute key="SlotType" value="ring"/>
-    <attribute key="SkillNumber" value="8"/>
-    <attribute key="SkillModification" value="4"/>
     <attribute key="decayTo" value="0"/>
     <attribute key="duration" value="1800"/>
     <attribute key="showduration" value="1"/>
+	<attribute key="skillSword" value="4" />
+	<attribute key="transformDeEquipTo" value="3091" />
   </item>
   <item id="3095" article="an" name="axe ring">
     <attribute key="flag" value="MovementEvent"/>
@@ -19222,11 +19247,11 @@
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="90"/>
     <attribute key="SlotType" value="ring"/>
-    <attribute key="SkillNumber" value="10"/>
-    <attribute key="SkillModification" value="4"/>
     <attribute key="decayTo" value="0"/>
     <attribute key="duration" value="1800"/>
     <attribute key="showduration" value="1"/>
+	<attribute key="skillAxe" value="4" />
+	<attribute key="transformDeEquipTo" value="3092" />
   </item>
   <item id="3096" article="a" name="club ring">
     <attribute key="flag" value="MovementEvent"/>
@@ -19236,11 +19261,11 @@
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="90"/>
     <attribute key="SlotType" value="ring"/>
-    <attribute key="SkillNumber" value="9"/>
-    <attribute key="SkillModification" value="4"/>
     <attribute key="decayTo" value="0"/>
     <attribute key="duration" value="1800"/>
     <attribute key="showduration" value="1"/>
+	<attribute key="skillClub" value="4" />
+	<attribute key="transformDeEquipTo" value="3093" />
   </item>
   <item id="3097" article="a" name="dwarven ring">
     <attribute key="flag" value="MovementEvent"/>
@@ -19250,6 +19275,7 @@
     <attribute key="Weight" value="110"/>
     <attribute key="SlotType" value="ring"/>
     <attribute key="showduration" value="1"/>
+	<attribute key="transformEquipTo" value="3099" />
   </item>
   <item id="3098" article="a" name="ring of healing">
     <attribute key="flag" value="MovementEvent"/>
@@ -19259,6 +19285,7 @@
     <attribute key="Weight" value="80"/>
     <attribute key="SlotType" value="ring"/>
     <attribute key="showduration" value="1"/>
+	<attribute key="transformEquipTo" value="3100" />
   </item>
   <item id="3099" article="a" name="dwarven ring">
     <attribute key="flag" value="MovementEvent"/>
@@ -19268,11 +19295,12 @@
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="110"/>
     <attribute key="SlotType" value="ring"/>
-    <attribute key="SkillNumber" value="20"/>
-    <attribute key="SkillModification" value="1"/>
     <attribute key="decayTo" value="0"/>
     <attribute key="duration" value="3600"/>
     <attribute key="showduration" value="1"/>
+	<attribute key="showattributes" value="1" />
+	<attribute key="suppressDrunk" value="1" />
+	<attribute key="transformDeEquipTo" value="3097" />
   </item>
   <item id="3100" article="a" name="ring of healing">
     <attribute key="flag" value="MovementEvent"/>
@@ -19282,11 +19310,15 @@
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="80"/>
     <attribute key="SlotType" value="ring"/>
-    <attribute key="SkillNumber" value="14"/>
-    <attribute key="SkillModification" value="1"/>
     <attribute key="decayTo" value="0"/>
     <attribute key="duration" value="450"/>
     <attribute key="showduration" value="1"/>
+	<attribute key="showattributes" value="1" />
+	<attribute key="healthGain" value="6" />
+	<attribute key="healthTicks" value="6000" />
+	<attribute key="manaGain" value="24" />
+	<attribute key="manaTicks" value="6000" />	
+	<attribute key="transformDeEquipTo" value="3098" />
   </item>
   <item id="3101" article="a" name="spellbook">
     <attribute key="flag" value="Text"/>
