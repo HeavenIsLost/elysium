@@ -438,6 +438,10 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 			}
 			else if (flagName == "chest") {
 				it.questChest = true;
+				it.type = ITEM_TYPE_CONTAINER;
+				it.group = itemgroup_t::ITEM_GROUP_CONTAINER;
+				//idk which should be the correct size
+				it.maxItems = 40;
 			}
 			else if (flagName == "destroy") {
 				it.canDestroy = true;
