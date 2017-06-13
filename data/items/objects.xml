@@ -19041,7 +19041,6 @@
   </item>
   <item id="3079" name="boots of haste">
     <attribute key="flag" value="Take"/>
-    <attribute key="flag" value="SkillBoost"/>
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="750"/>
     <attribute key="SlotType" value="feet"/>
@@ -19120,7 +19119,6 @@
   <item id="3086" article="a" name="stealth ring">
     <attribute key="flag" value="MovementEvent"/>
     <attribute key="flag" value="Take"/>
-    <attribute key="flag" value="SkillBoost"/>
     <attribute key="flag" value="Decay"/>
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="100"/>
@@ -19135,7 +19133,6 @@
   <item id="3087" article="a" name="power ring">
     <attribute key="flag" value="MovementEvent"/>
     <attribute key="flag" value="Take"/>
-    <attribute key="flag" value="SkillBoost"/>
     <attribute key="flag" value="Decay"/>
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="80"/>
@@ -19150,7 +19147,6 @@
   <item id="3088" article="an" name="energy ring">
     <attribute key="flag" value="MovementEvent"/>
     <attribute key="flag" value="Take"/>
-    <attribute key="flag" value="SkillBoost"/>
     <attribute key="flag" value="Decay"/>
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="80"/>
@@ -19165,7 +19161,6 @@
   <item id="3089" article="a" name="life ring">
     <attribute key="flag" value="MovementEvent"/>
     <attribute key="flag" value="Take"/>
-    <attribute key="flag" value="SkillBoost"/>
     <attribute key="flag" value="Decay"/>
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="80"/>
@@ -19183,7 +19178,6 @@
   <item id="3090" article="a" name="time ring">
     <attribute key="flag" value="MovementEvent"/>
     <attribute key="flag" value="Take"/>
-    <attribute key="flag" value="SkillBoost"/>
     <attribute key="flag" value="Decay"/>
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="90"/>
@@ -19228,7 +19222,6 @@
   <item id="3094" article="a" name="sword ring">
     <attribute key="flag" value="MovementEvent"/>
     <attribute key="flag" value="Take"/>
-    <attribute key="flag" value="SkillBoost"/>
     <attribute key="flag" value="Decay"/>
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="90"/>
@@ -19242,7 +19235,6 @@
   <item id="3095" article="an" name="axe ring">
     <attribute key="flag" value="MovementEvent"/>
     <attribute key="flag" value="Take"/>
-    <attribute key="flag" value="SkillBoost"/>
     <attribute key="flag" value="Decay"/>
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="90"/>
@@ -19256,7 +19248,6 @@
   <item id="3096" article="a" name="club ring">
     <attribute key="flag" value="MovementEvent"/>
     <attribute key="flag" value="Take"/>
-    <attribute key="flag" value="SkillBoost"/>
     <attribute key="flag" value="Decay"/>
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="90"/>
@@ -19290,7 +19281,6 @@
   <item id="3099" article="a" name="dwarven ring">
     <attribute key="flag" value="MovementEvent"/>
     <attribute key="flag" value="Take"/>
-    <attribute key="flag" value="SkillBoost"/>
     <attribute key="flag" value="Decay"/>
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="110"/>
@@ -19305,7 +19295,6 @@
   <item id="3100" article="a" name="ring of healing">
     <attribute key="flag" value="MovementEvent"/>
     <attribute key="flag" value="Take"/>
-    <attribute key="flag" value="SkillBoost"/>
     <attribute key="flag" value="Decay"/>
     <attribute key="flag" value="Equipment"/>
     <attribute key="Weight" value="80"/>
