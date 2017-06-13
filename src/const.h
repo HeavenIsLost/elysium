@@ -457,8 +457,8 @@ enum item_t : uint16_t {
 	ITEM_LOCKER1 = 3497,
 
 	//does not exist in 7.7
-	ITEM_INBOX = 14404,
-	ITEM_MARKET = 14405,
+	ITEM_INBOX = 5091,
+	ITEM_MARKET = 5092,
 
 	ITEM_MALE_CORPSE = 4240,
 	ITEM_FEMALE_CORPSE = 4247,

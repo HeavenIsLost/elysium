@@ -22458,6 +22458,7 @@
     <attribute key="containerSize" value="30"/>
     <attribute key="Elevation" value="8"/>
     <attribute key="Meaning" value="20"/>
+	<attribute key="type" value="depot"/>
   </item>
   <item id="3498" article="a" name="locker">
     <attribute key="flag" value="Container"/>
@@ -22466,6 +22467,7 @@
     <attribute key="flag" value="Height"/>
     <attribute key="containerSize" value="30"/>
     <attribute key="Elevation" value="8"/>
+	<attribute key="type" value="depot"/>
   </item>
   <item id="3499" article="a" name="locker">
     <attribute key="flag" value="Container"/>
@@ -22474,6 +22476,7 @@
     <attribute key="flag" value="Height"/>
     <attribute key="containerSize" value="30"/>
     <attribute key="Elevation" value="8"/>
+	<attribute key="type" value="depot"/>
   </item>
   <item id="3500" article="a" name="locker">
     <attribute key="flag" value="Container"/>
@@ -22482,6 +22485,7 @@
     <attribute key="flag" value="Height"/>
     <attribute key="containerSize" value="30"/>
     <attribute key="Elevation" value="8"/>
+	<attribute key="type" value="depot"/>
   </item>
   <item id="3501" article="a" name="mailbox">
     <attribute key="description" value="Royal Tibia Mail."/>
@@ -33036,5 +33040,18 @@
     <attribute key="flag" value="Take"/>
     <attribute key="FontSize" value="1"/>
     <attribute key="Weight" value="830"/>
+  </item>
+  <!--custom, temp hack-->
+   <item id="5091" name="your inbox">
+    <attribute key="flag" value="Container"/>
+    <attribute key="flag" value="Unmove"/>
+    <attribute key="flag" value="Disguise"/>
+    <attribute key="DisguiseTarget" value="3501"/>
+	<attribute key="containerSize" value="30" />
+  </item>
+    <item id="5092" name="the market">
+    <attribute key="flag" value="Unmove"/>
+    <attribute key="flag" value="Disguise"/>
+    <attribute key="DisguiseTarget" value="3508"/>
   </item>
 </items>
