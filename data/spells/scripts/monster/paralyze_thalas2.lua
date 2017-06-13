@@ -1,16 +1,16 @@
-local combat = createCombatObject()
-setCombatParam(combat, COMBAT_PARAM_TYPE, CONST_ME_MAGIC_GREEN)
-setCombatParam(combat, COMBAT_PARAM_EFFECT, CONST_ME_POISONAREA)
-setCombatParam(combat, COMBAT_PARAM_DISTANCEEFFECT, CONST_ANI_POISON)
+local combat = Combat()
+combat:setParameter(COMBAT_PARAM_TYPE, CONST_ME_MAGIC_GREEN)
+combat:setParameter(COMBAT_PARAM_EFFECT, CONST_ME_POISONAREA)
+combat:setParameter(COMBAT_PARAM_DISTANCEEFFECT, CONST_ANI_POISON)
 
-local condition = createConditionObject(CONDITION_PARALYZE)
-setConditionParam(condition, CONDITION_PARAM_TICKS, 12*1000)
-setConditionFormula(condition, 0, -120, 0, -200)
-setCombatCondition(combat, condition)
+local condition = Condition(CONDITION_PARALYZE)
+condition:setParameter(CONDITION_PARAM_TICKS, 12*1000)
+condition:setFormula(0, -120, 0, -200)
 
 local area = createCombatArea(AREA_CIRCLE3X3)
-setCombatArea(combat, area)
+combat:setArea(area)
+combat:setCondition(condition)
 
-function onCastSpell(cid, var)
-	return doCombat(cid, combat, var)
+function onCastSpell(creature, variant)
+	return combat:execute(creature, variant)
 end
