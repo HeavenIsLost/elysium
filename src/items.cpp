@@ -520,6 +520,7 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 			}
 			else if (flagName == "leveldoor") {
 				it.isLevelDoor = true;
+				it.levelDoor = 1000;
 				it.type = ITEM_TYPE_DOOR;
 			}
 			else if (flagName == "writeonce") {
@@ -599,6 +600,10 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 		//todo
 		//no clue why its used in text items
 		else if (tmpStrValue == "fontsize") {
+			it.fontSize = pugi::cast<uint16_t>(valueAttribute.value());
+			if (it.fontSize > 1) {
+				it.allowDistRead = true;
+			}
 		}
 		else if (tmpStrValue == "informationtype") {
 			it.informationType = pugi::cast<uint16_t>(valueAttribute.value());

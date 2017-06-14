@@ -1234,10 +1234,10 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 				} else {
 					s << "unknown";
 				}
-			} else if (it.allowDistRead && (it.id < 7369 || it.id > 7371)) {
+			} else if (it.allowDistRead) {
 				s << '.' << std::endl;
 
-				if (lookDistance <= 4) {
+				if (lookDistance < it.fontSize) {
 					if (item) {
 						text = &item->getText();
 						if (!text->empty()) {
@@ -1262,7 +1262,7 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 				} else {
 					s << "You are too far away to read it";
 				}
-			} else if (it.levelDoor != 0 && item) {
+			} else if (it.isLevelDoor && item) {
 				uint16_t actionId = item->getActionId();
 				if (actionId >= it.levelDoor) {
 					s << " for level " << (actionId - it.levelDoor);
@@ -1312,7 +1312,7 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 		}
 	}
 
-	if (!it.allowDistRead || (it.id >= 7369 && it.id <= 7371)) {
+	if (!it.allowDistRead) {
 		s << '.';
 	} else {
 		if (!text && item) {
@@ -1376,15 +1376,6 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 		s << std::endl << it.description;
 	}
 
-	if (it.allowDistRead && it.id >= 7369 && it.id <= 7371) {
-		if (!text && item) {
-			text = &item->getText();
-		}
-
-		if (text && !text->empty()) {
-			s << std::endl << *text;
-		}
-	}
 	return s.str();
 }
 

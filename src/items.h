@@ -331,6 +331,7 @@ class ItemType
 
 		bool isProtection = false;
 	
+		uint16_t fontSize = 0;
 };
 
 class Items
