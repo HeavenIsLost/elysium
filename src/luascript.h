@@ -471,6 +471,8 @@ class LuaScriptInterface
 		static int luaSendChannelMessage(lua_State* L);
 		static int luaSendGuildChannelMessage(lua_State* L);
 
+		static int luaGetAllItemTypes(lua_State* L);
+
 #ifndef LUAJIT_VERSION
 		static int luaBitNot(lua_State* L);
 		static int luaBitAnd(lua_State* L);
@@ -1141,6 +1143,8 @@ class LuaScriptInterface
 
 		static int luaItemTypeHasSubType(lua_State* L);
 
+		static int luaItemTypeIsChangeUse(lua_State* L);
+		static int luaItemTypeGetChangeUseTarget(lua_State* L);
 		// Combat
 		static int luaCombatCreate(lua_State* L);
 

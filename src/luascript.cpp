@@ -1001,6 +1001,9 @@ void LuaScriptInterface::registerFunctions()
 	//sendGuildChannelMessage(guildId, type, message)
 	lua_register(luaState, "sendGuildChannelMessage", LuaScriptInterface::luaSendGuildChannelMessage);
 
+	//GetAllItemTypes()
+	lua_register(luaState, "GetAllItemTypes", LuaScriptInterface::luaGetAllItemTypes);
+
 #ifndef LUAJIT_VERSION
 	//bit operations for Lua, based on bitlib project release 24
 	//bit.bnot, bit.band, bit.bor, bit.bxor, bit.lshift, bit.rshift
@@ -2466,6 +2469,9 @@ void LuaScriptInterface::registerFunctions()
 
 	registerMethod("ItemType", "hasSubType", LuaScriptInterface::luaItemTypeHasSubType);
 
+	registerMethod("ItemType", "isChangeUse", LuaScriptInterface::luaItemTypeIsChangeUse);
+	registerMethod("ItemType", "getChangeUseTarget", LuaScriptInterface::luaItemTypeGetChangeUseTarget);
+
 	// Combat
 	registerClass("Combat", "", LuaScriptInterface::luaCombatCreate);
 	registerMetaMethod("Combat", "__eq", LuaScriptInterface::luaUserdataCompare);
@@ -3585,6 +3591,23 @@ int LuaScriptInterface::luaSendGuildChannelMessage(lua_State* L)
 	return 1;
 }
 
+int LuaScriptInterface::luaGetAllItemTypes(lua_State* L)
+{
+	//GetAllItemTypes()
+
+	lua_createtable(L, 0, Item::items.size());
+
+	int index = 0;
+
+	for (const ItemType& it : Item::items.getItems()) {
+		pushUserdata<const ItemType>(L, &it);
+		setMetatable(L, -1, "ItemType");
+		lua_rawseti(L, -2, ++index);
+	}
+
+	return 1;
+}
+
 std::string LuaScriptInterface::escapeString(const std::string& string)
 {
 	std::string s = string;
@@ -4266,6 +4289,8 @@ int LuaScriptInterface::luaGameReload(lua_State* L)
 
 	if (reloadType == RELOAD_TYPE_GLOBAL) {
 		pushBoolean(L, g_luaEnvironment.loadFile("data/global.lua") == 0);
+	} else if (reloadType == RELOAD_TYPE_ACTIONS) {
+			pushBoolean(L, g_luaEnvironment.loadFile("data/actions/actions.lua") == 0);
 	} else {
 		pushBoolean(L, g_game.reload(reloadType));
 	}
@@ -11061,6 +11086,30 @@ int LuaScriptInterface::luaItemTypeHasSubType(lua_State* L)
 	const ItemType* itemType = getUserdata<const ItemType>(L, 1);
 	if (itemType) {
 		pushBoolean(L, itemType->hasSubType());
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int LuaScriptInterface::luaItemTypeGetChangeUseTarget(lua_State* L)
+{
+	// itemType:getChangeUseTarget()
+	const ItemType* itemType = getUserdata<const ItemType>(L, 1);
+	if (itemType) {
+		lua_pushnumber(L, itemType->changeUseTarget);
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int LuaScriptInterface::luaItemTypeIsChangeUse(lua_State* L)
+{
+	// itemType:isChangeUse()
+	const ItemType* itemType = getUserdata<const ItemType>(L, 1);
+	if (itemType) {
+		pushBoolean(L, itemType->changeUse);
 	} else {
 		lua_pushnil(L);
 	}

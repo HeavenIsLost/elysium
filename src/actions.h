@@ -42,7 +42,10 @@ class Action : public Event
 		virtual bool hasOwnErrorHandler() {
 			return false;
 		}
-		virtual Thing* getTarget(Player* player, Creature* targetCreature, const Position& toPosition, uint8_t toStackPos) const;
+
+		virtual bool isRuneAction() const {
+			return false;
+		}
 
 		ActionFunction function;
 

@@ -271,7 +271,7 @@ class ItemType
 		bool isLiquidSource = false;
 
 		bool changeUse = false;
-		uint16_t changeTarget = 0;
+		uint16_t changeUseTarget = 0;
 
 		bool canDecay = false;
 
@@ -368,6 +368,10 @@ class Items
 
 		size_t size() const {
 			return items.size();
+		}
+
+		std::vector<ItemType>& getItems() {
+			return items;
 		}
 
 		NameMap nameToItems;

@@ -78,8 +78,8 @@ bool ScriptingManager::loadScriptSystems()
 	}
 
 	g_actions = new Actions();
-	if (!g_actions->loadFromXml()) {
-		std::cout << "> ERROR: Unable to load actions!" << std::endl;
+	if (g_luaEnvironment.loadFile("data/actions/actions.lua") == -1) {
+		std::cout << "> ERROR: Unable to load data/actions/actions!" << std::endl;
 		return false;
 	}
 

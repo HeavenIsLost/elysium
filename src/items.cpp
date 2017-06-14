@@ -576,7 +576,7 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 			it.lightColor = pugi::cast<uint8_t>(valueAttribute.value());
 		}
 		else if (tmpStrValue == "changetarget") {
-			it.changeTarget = pugi::cast<uint16_t>(valueAttribute.value());
+			it.changeUseTarget = pugi::cast<uint16_t>(valueAttribute.value());
 		}
 		else if (tmpStrValue == "nutrition") {
 			it.nutrition = pugi::cast<uint16_t>(valueAttribute.value());

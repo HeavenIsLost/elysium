@@ -110,6 +110,8 @@ bool Events::load()
 				info.playerOnLoseExperience = event;
 			} else if (methodName == "onGainSkillTries") {
 				info.playerOnGainSkillTries = event;
+			} else if (methodName == "onUseItem") {
+				info.playerOnUseItem = event;
 			} else {
 				std::cout << "[Warning - Events::load] Unknown player method: " << methodName << std::endl;
 			}
@@ -753,3 +755,39 @@ void Events::eventPlayerOnGainSkillTries(Player* player, skills_t skill, uint64_
 
 	scriptInterface.resetScriptEnv();
 }
+
+bool Events::eventPlayerUseItem(Player * player, Item * item, const Position& playerPosition, const Position& itemPosition, const Position & fromPos, Thing * target, const Position & toPos, bool isHotkey)
+{
+	//Player:onUseItem(player, item, fromPosition, target, toPosition, isHotkey)
+	if (info.playerOnUseItem == -1) {
+		return false;
+	}
+
+	if (!scriptInterface.reserveScriptEnv()) {
+		std::cout << "[Error - Events::eventPlayerUseItem] Call stack overflow" << std::endl;
+		return false;
+	}
+
+	ScriptEnvironment* env = scriptInterface.getScriptEnv();
+	env->setScriptId(info.playerOnUseItem, &scriptInterface);
+
+
+	lua_State* L = scriptInterface.getLuaState();
+
+	scriptInterface.pushFunction(info.playerOnUseItem);
+
+	LuaScriptInterface::pushUserdata<Player>(L, player);
+	LuaScriptInterface::setMetatable(L, -1, "Player");
+
+	LuaScriptInterface::pushThing(L, item);
+	LuaScriptInterface::pushPosition(L, playerPosition);
+	LuaScriptInterface::pushPosition(L, itemPosition);
+	LuaScriptInterface::pushPosition(L, fromPos);
+
+	LuaScriptInterface::pushThing(L, target);
+	LuaScriptInterface::pushPosition(L, toPos);
+
+	LuaScriptInterface::pushBoolean(L, isHotkey);
+	return scriptInterface.callFunction(8);
+}
+

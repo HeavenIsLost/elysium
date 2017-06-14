@@ -26,11 +26,13 @@
 #include "game.h"
 #include "pugicast.h"
 #include "spells.h"
+#include "events.h"
 
 extern Game g_game;
 extern Spells* g_spells;
 extern Actions* g_actions;
 extern ConfigManager g_config;
+extern Events* g_events;
 
 Actions::Actions() :
 	scriptInterface("Action Interface")
@@ -243,25 +245,6 @@ ReturnValue Actions::canUseFar(const Creature* creature, const Position& toPos, 
 
 Action* Actions::getAction(const Item* item)
 {
-	if (item->hasAttribute(ITEM_ATTRIBUTE_UNIQUEID)) {
-		auto it = uniqueItemMap.find(item->getUniqueId());
-		if (it != uniqueItemMap.end()) {
-			return it->second;
-		}
-	}
-
-	if (item->hasAttribute(ITEM_ATTRIBUTE_ACTIONID)) {
-		auto it = actionItemMap.find(item->getActionId());
-		if (it != actionItemMap.end()) {
-			return it->second;
-		}
-	}
-
-	auto it = useItemMap.find(item->getID());
-	if (it != useItemMap.end()) {
-		return it->second;
-	}
-
 	//rune items
 	return g_spells->getRuneSpell(item->getID());
 }
@@ -274,19 +257,23 @@ ReturnValue Actions::internalUseItem(Player* player, const Position& pos, uint8_
 		}
 	}
 
-	Action* action = getAction(item);
-	if (action) {
-		if (action->isScripted()) {
-			if (action->executeUse(player, item, pos, nullptr, pos, isHotkey)) {
-				return RETURNVALUE_NOERROR;
-			}
+	if (g_events->eventPlayerUseItem(player, item, player->getPosition(), item->getPosition(), pos, nullptr, pos, isHotkey)) {
+		return RETURNVALUE_NOERROR;
+	} else {
+		Action* action = getAction(item);
+		if (action) {
+			if (action->isScripted()) {
+				if (action->executeUse(player, item, pos, nullptr, pos, isHotkey)) {
+					return RETURNVALUE_NOERROR;
+				}
 
-			if (item->isRemoved()) {
-				return RETURNVALUE_CANNOTUSETHISOBJECT;
-			}
-		} else if (action->function) {
-			if (action->function(player, item, pos, nullptr, pos, isHotkey)) {
-				return RETURNVALUE_NOERROR;
+				if (item->isRemoved()) {
+					return RETURNVALUE_CANNOTUSETHISOBJECT;
+				}
+			} else if (action->function) {
+				if (action->function(player, item, pos, nullptr, pos, isHotkey)) {
+					return RETURNVALUE_NOERROR;
+				}
 			}
 		}
 	}
@@ -347,11 +334,6 @@ ReturnValue Actions::internalUseItem(Player* player, const Position& pos, uint8_
 		}
 
 		return RETURNVALUE_NOERROR;
-	} else if (it.changeUse) {
-		if (it.changeTarget != 0) {
-			g_game.transformItem(item, it.changeTarget);
-			return RETURNVALUE_NOERROR;
-		}
 	}
 
 	return RETURNVALUE_CANNOTUSETHISOBJECT;
@@ -371,6 +353,7 @@ bool Actions::useItem(Player* player, const Position& pos, uint8_t index, Item* 
 		player->sendCancelMessage(ret);
 		return false;
 	}
+
 	return true;
 }
 
@@ -379,6 +362,18 @@ bool Actions::useItemEx(Player* player, const Position& fromPos, const Position&
 {
 	player->setNextAction(OTSYS_TIME() + g_config.getNumber(ConfigManager::EX_ACTIONS_DELAY_INTERVAL));
 	player->stopWalk();
+
+	Thing* target;
+
+	if (creature) {
+		target = creature; 
+	} else {
+		target = g_game.internalGetThing(player, toPos, toStackPos, 0, STACKPOS_USETARGET);
+	}
+
+	if (g_events->eventPlayerUseItem(player, item, player->getPosition(), item->getPosition(), fromPos, target, toPos, isHotkey)) {
+		return RETURNVALUE_NOERROR;
+	}
 
 	Action* action = getAction(item);
 	if (!action) {
@@ -396,7 +391,11 @@ bool Actions::useItemEx(Player* player, const Position& fromPos, const Position&
 		showUseHotkeyMessage(player, item, player->getItemTypeCount(item->getID(), -1));
 	}
 
-	if (!action->executeUse(player, item, fromPos, action->getTarget(player, creature, toPos, toStackPos), toPos, isHotkey)) {
+	if (action->isRuneAction()) {
+		target = creature;
+	}
+
+	if (!action->executeUse(player, item, fromPos, target, toPos, isHotkey)) {
 		if (!action->hasOwnErrorHandler()) {
 			player->sendCancelMessage(RETURNVALUE_CANNOTUSETHISOBJECT);
 		}
@@ -483,14 +482,6 @@ ReturnValue Action::canExecuteAction(const Player* player, const Position& toPos
 	} else {
 		return g_actions->canUseFar(player, toPos, checkLineOfSight, checkFloor);
 	}
-}
-
-Thing* Action::getTarget(Player* player, Creature* targetCreature, const Position& toPosition, uint8_t toStackPos) const
-{
-	if (targetCreature) {
-		return targetCreature;
-	}
-	return g_game.internalGetThing(player, toPosition, toStackPos, 0, STACKPOS_USETARGET);
 }
 
 bool Action::executeUse(Player* player, Item* item, const Position& fromPos, Thing* target, const Position& toPos, bool isHotkey)
