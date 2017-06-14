@@ -359,8 +359,8 @@ class Items
 
 		uint16_t getItemIdByName(const std::string& name);
 
-		uint32_t majorVersion = 0;
-		uint32_t minorVersion = 0;
+		uint32_t majorVersion = 3;
+		uint32_t minorVersion = 3;
 		uint32_t buildNumber = 0;
 
 		bool loadFromXml();
